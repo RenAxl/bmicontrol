@@ -9,7 +9,7 @@ export class NavbarComponent implements OnInit {
 
   userLoggedIn: string = 'Usuário X';
 
-  exibindoMenu: boolean = false;
+  showMenu: boolean = false;
 
   constructor() { }
 

@@ -42,6 +42,7 @@
   
   .nav-login-logout {
     display: none;
+    margin-left: 20px;
   }
   
   .nav-login-logout a {
@@ -52,6 +53,7 @@
   .nav-login-logout a.active {
     font-weight: bold;
   }
+
   @media (min-width: 768px) {
     .nav-login-logout {
       display: unset;

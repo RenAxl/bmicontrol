@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-md navbar-dark main-nav">
+  <div class="container-fluid">
+    <a routerLink="/home" class="nav-logo-text">
+      <h4>RT Controle de IMC</h4>
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="exibindoMenu = !exibindoMenu"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse" [hidden]="!exibindoMenu">
+      <ul class="navbar-nav offset-md-2 main-menu">
+        <li>
+          <a routerLink="/home" routerLinkActive="active">HOME</a>
+        </li>
+        <li>
+          <a routerLink="/members/list" routerLinkActive="active">ALUNOS</a>
+        </li>
+        <li>
+          <a routerLink="/admin/users/list" routerLinkActive="active">ADMIN</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="nav-login-logout">
+      <a routerLink="auth/login">{{ userLoggedIn }}</a>
+      <a class=login routerLink="/auth/login" routerLinkActive="active"> // LOGIN </a>
+      <a routerLink=""> // LOGOUT </a>
+    </div>
+  </div>
+</nav>

@@ -43,6 +43,7 @@
   .nav-login-logout {
     display: none;
     margin-left: 20px;
+    color: #fff
   }
   
   .nav-login-logout a {

@@ -9,6 +9,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { MembersRoutingModule } from './members-routing.module';
 import { MemberListComponent } from './member-list/member-list.component';
 import { MemberFormComponent } from './member-form/member-form.component';
+import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { MemberFormComponent } from './member-form/member-form.component';
     MembersRoutingModule,
     TableModule,
     TabViewModule,
-    TooltipModule
+    TooltipModule,
+    ComponentsModule
   ]
 })
 export class MembersModule { }

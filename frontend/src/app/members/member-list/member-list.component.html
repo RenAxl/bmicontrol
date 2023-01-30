@@ -3,6 +3,7 @@
   <div class="member-title">
     <h2>Lista de alunos com o calculo do IMC e sua classificação</h2>
   </div>
+    <app-filter></app-filter>
   <div class="member-card">
     <div class="grid">
       <div class="col-12">
@@ -53,22 +54,29 @@
 
               <td>
                 <span class="p-column-title">Classificação</span>
-                <div *ngIf=" member.classification === 'MAGREZA'">
-                  <span [style.color] = "'DarkTurquoise'">{{ member.classification }}</span>
+                <div *ngIf="member.classification === 'MAGREZA'">
+                  <span [style.color]="'DarkTurquoise'">{{
+                    member.classification
+                  }}</span>
                 </div>
-                <div *ngIf=" member.classification === 'NORMAL'">
-                  <span [style.color] = "'Lime'">{{ member.classification }}</span>
+                <div *ngIf="member.classification === 'NORMAL'">
+                  <span [style.color]="'Lime'">{{
+                    member.classification
+                  }}</span>
                 </div>
-                <div *ngIf=" member.classification === 'SOBREPESO'">
-                  <span [style.color] = "'Goldenrod'">{{ member.classification }}</span>
+                <div *ngIf="member.classification === 'SOBREPESO'">
+                  <span [style.color]="'Goldenrod'">{{
+                    member.classification
+                  }}</span>
                 </div>
-                <div *ngIf=" member.classification === 'OBESIDADE'">
-                  <span [style.color] = "'DarkRed'">{{ member.classification }}</span>
+                <div *ngIf="member.classification === 'OBESIDADE'">
+                  <span [style.color]="'DarkRed'">{{
+                    member.classification
+                  }}</span>
                 </div>
-                <div *ngIf=" member.classification === 'OBESIDADE GRAVE'">
-                  <span [style.color] = "'red'">{{ member.classification }}</span>
+                <div *ngIf="member.classification === 'OBESIDADE GRAVE'">
+                  <span [style.color]="'red'">{{ member.classification }}</span>
                 </div>
-                
               </td>
 
               <td class="col-actions">

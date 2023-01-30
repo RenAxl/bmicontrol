@@ -55,6 +55,9 @@
 
   .filter-container {
     width: 500px;
+    margin-left: 20px;
+    padding: 10px 15px;
+    height: 60px;
   }
 
   .filter-form {

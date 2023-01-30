@@ -1,9 +1,14 @@
 <div class="container">
   <!--container é uma classe do bootstrap-->
   <div class="member-title">
-    <h2>Lista de alunos com o calculo do IMC e sua classificação</h2>
+    <h2>Controle de IMC dos alunos da RT Academy</h2>
   </div>
+  <div class="board-crud-bar-container">
+    <a routerLink="/members/create">
+      <button class="btn btn-primary text-white btn-crud-add">NOVO ALUNO</button>
+    </a>
     <app-filter></app-filter>
+  </div>
   <div class="member-card">
     <div class="grid">
       <div class="col-12">

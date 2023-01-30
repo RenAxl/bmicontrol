@@ -1,1 +1,33 @@
-<h1>Login</h1>
+<div class="login-card">
+  <h1>LOGIN</h1>
+
+  <form>
+    <div class="mb-4">
+      <input
+        type="text"
+        class="form-control base-input"
+        placeholder="Email"
+        name="username"
+      />
+    </div>
+
+    <div class="mb-2">
+      <input
+        type="password"
+        class="form-control base-input"
+        placeholder="Password"
+        name="password"
+      />
+    </div>
+    <br />
+
+    <div class="login-submit">
+      <a pButton class="btn btn-primary" routerLink="/members/list">Logar</a>
+    </div>
+
+    <span className="not-registered">Ainda não possui cadastro instrutor?</span>
+    <a routerLink="/auth/signup" className="login-link-register">
+      CADASTRE-SE AGORA
+    </a>
+  </form>
+</div>

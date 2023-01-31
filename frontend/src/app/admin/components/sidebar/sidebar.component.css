@@ -57,7 +57,7 @@
     .admin-nav-container {
         padding: 0px;
         width: 200px;
-        height: 530px;
+        height: calc(100vh - 70px);
     }
 
     .admin-nav-item {

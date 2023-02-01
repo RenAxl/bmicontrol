@@ -25,61 +25,29 @@
               <th class="actions"></th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-member>
+          <ng-template pTemplate="body" let-trainer>
             <tr>
               <td>
                 <!--a classe "p-column-title" é do PrimeNG-->
-                <span class="p-column-title">Aluno</span>
-                {{ member.name }}
+                <span class="p-column-title">Nome</span>
+                {{ trainer.name }}
               </td>
 
               <td>
-                <span class="p-column-title">Instrutor</span>
-                {{ member.trainer }}
+                <span class="p-column-title">Idade</span>
+                {{ trainer.age }}
               </td>
 
               <td>
-                <span class="p-column-title">Altura</span>
-                {{ member.height }}
+                <span class="p-column-title">CPF</span>
+                {{ trainer.cpf }}
               </td>
 
               <td>
-                <span class="p-column-title">Peso</span>
-                {{ member.weight }}
+                <span class="p-column-title">Celular</span>
+                {{ trainer.cellular }}
               </td>
-
-              <td>
-                <span class="p-column-title">IMC</span>
-                {{ member.imc }}
-              </td>
-
-              <td>
-                <span class="p-column-title">Classificação</span>
-                <div *ngIf="member.classification === 'MAGREZA'">
-                  <span [style.color]="'DarkTurquoise'">{{
-                    member.classification
-                  }}</span>
-                </div>
-                <div *ngIf="member.classification === 'NORMAL'">
-                  <span [style.color]="'Lime'">{{
-                    member.classification
-                  }}</span>
-                </div>
-                <div *ngIf="member.classification === 'SOBREPESO'">
-                  <span [style.color]="'Goldenrod'">{{
-                    member.classification
-                  }}</span>
-                </div>
-                <div *ngIf="member.classification === 'OBESIDADE'">
-                  <span [style.color]="'DarkRed'">{{
-                    member.classification
-                  }}</span>
-                </div>
-                <div *ngIf="member.classification === 'OBESIDADE GRAVE'">
-                  <span [style.color]="'red'">{{ member.classification }}</span>
-                </div>
-              </td>
-
+              
               <td class="col-actions">
                 <a
                   pButton

@@ -21,6 +21,18 @@
             <!--form-control é uma classe do bootstrap para deixar as bordas redondas do input-->
           </div>
 
+          <app-message
+            [control]="name"
+            error="required"
+            text="Informe o nome completo"
+          ></app-message>
+          <app-message
+            [control]="name"
+            error="minlength"
+            text="Mínimo de {{ name.errors?.['minlength']?.requiredLength }} caracteres. Você digitou apenas {{ name.errors?.['minlength']?.actualLength }}"
+          >
+          </app-message>
+
           <div class="mb-3">
             <input
               pInputText
@@ -34,6 +46,12 @@
             />
             <!--form-control é uma classe do bootstrap para deixar as bordas redondas do input-->
           </div>
+
+          <app-message
+            [control]="age"
+            error="required"
+            text="Informe a idade"
+          ></app-message>
         </div>
 
         <div class="trainer-form-inputs-right col-lg-6 mb-6">
@@ -50,6 +68,12 @@
             <!--O styleClass é o Class do p-inputMask-->
           </div>
 
+          <app-message
+            [control]="cpf"
+            error="required"
+            text="Informe o cpf"
+          ></app-message>
+
           <div class="mb-3">
             <p-inputMask
               placeholder="Celular"
@@ -62,6 +86,13 @@
             ></p-inputMask>
             <!--O styleClass é o Class do p-inputMask-->
           </div>
+
+          <app-message
+            [control]="cellular"
+            error="required"
+            text="Informe o celular com o DDD"
+          ></app-message>
+          
         </div>
       </div>
 

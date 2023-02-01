@@ -11,22 +11,22 @@ export class UserListComponent implements OnInit {
     {
       name: 'Clark Anderson',
       email: 'clark@email.com',
-      password: '123456',  
+      role: 'ADMIN',  
     },
     {
       name: 'Velma Pamela',
       email: 'velma@email.com',
-      password: '123456',  
+      role: 'FUNCTIONARY',  
     },
     {
       name: 'Lucia Paiva',
       email: 'lucia@email.com',
-      password: '123456',  
+      role: 'ADMIN',  
     },
     {
       name: 'Ronaldo Marques',
       email: 'ronaldo@email.com',
-      password: '123456',  
+      role: 'FUNCTIONARY',  
     },
   ]
 

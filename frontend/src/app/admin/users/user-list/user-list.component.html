@@ -1,8 +1,8 @@
 <div class="container">
     <div class="crud-bar-container">
-      <a routerLink="/admin/trainers/create">
+      <a routerLink="/admin/users/create">
         <button class="btn btn-primary text-white btn-crud-add">
-          NOVO INSTRUTOR
+          NOVO USUÁRIO
         </button>
       </a>
       <app-filter text="Digite o nome do usuário"></app-filter>
@@ -20,6 +20,7 @@
               <tr>
                 <th>Nome</th>
                 <th>E-mail</th>
+                <th>Permissão</th>
                 <th class="actions"></th>
               </tr>
             </ng-template>
@@ -30,11 +31,14 @@
                   <span class="p-column-title">Nome</span>
                   {{ user.name }}
                 </td>
-  
                 <td>
                   <span class="p-column-title">E-mail</span>
                   {{ user.email }}
-                </td>        
+                </td>  
+                <td>
+                  <span class="p-column-title">Permissão</span>
+                  {{ user.role }}
+                </td>       
                 <td class="col-actions">
                   <a
                     pButton

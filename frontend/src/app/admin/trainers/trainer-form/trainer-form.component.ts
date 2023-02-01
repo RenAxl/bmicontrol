@@ -20,11 +20,11 @@ export class TrainerFormComponent implements OnInit {
 
   constructor() { }
 
-  save(form: NgForm){
-    console.log(form.value);
+  ngOnInit(): void {
   }
 
-  ngOnInit(): void {
+  save(form: NgForm){
+    console.log(form.value);
   }
 
 }

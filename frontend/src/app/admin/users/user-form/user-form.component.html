@@ -1,1 +1,90 @@
-<h1>Cadastro/Edição de usuários da área Admin</h1>
+<div class="user-form-container">
+  <div class="user-card">
+    <form #userForm="ngForm" (ngSubmit)="save(userForm)">
+      <div class="col-12">
+        <h1>Dados do Usuário</h1>
+      </div>
+      <div class="row user-inputs-container">
+        <div class="user-form-inputs-left col-lg-6">
+          <div class="mb-3">
+            <input
+              pInputText
+              placeholder="Nome"
+              type="text"
+              name="name"
+              [(ngModel)]="user.name"
+              #name="ngModel"
+              [required]="true"
+              minlength="5"
+              class="form-control"
+            />
+          </div>
+
+          <app-message
+            [control]="name"
+            error="required"
+            text="Informe o nome completo do usuário"
+          ></app-message>
+          <app-message
+            [control]="name"
+            error="minlength"
+            text="Mínimo de {{ name.errors?.['minlength']?.requiredLength }} caracteres. Você digitou apenas {{ name.errors?.['minlength']?.actualLength }}"
+          >
+          </app-message>
+
+          <div class="mb-3">
+            <input
+              pInputText
+              placeholder="E-mail"
+              type="email"
+              name="email"
+              [(ngModel)]="user.email"
+              #email="ngModel"
+              [required]="true"
+              class="form-control"
+            />
+          </div>
+
+          <app-message
+            [control]="email"
+            error="required"
+            text="Informe o E-mail do usuário"
+          ></app-message>
+        </div>
+
+        <div class="user-form-inputs-right col-lg-6 mb-6">
+          <div class="mb-3">
+            <p-dropdown
+              [options]="roles"
+              placeholder="Selecione"
+              name="role"
+              [(ngModel)]="user.roles.id"
+              #role
+              [required]="true"
+              styleClass="form-control"
+            ></p-dropdown>
+          </div>
+        </div>
+      </div>
+
+      <div class="user-form-buttons">
+        <button
+          type="submit"
+          [disabled]="userForm.invalid"
+          class="btn btn-primary user-form-button"
+        >
+          SALVAR
+        </button>
+
+        <a routerLink="/admin/users/list">
+          <button
+            type="button"
+            class="btn btn-outline-danger user-form-button ml-3"
+          >
+            CANCELAR
+          </button>
+        </a>
+      </div>
+    </form>
+  </div>
+</div>

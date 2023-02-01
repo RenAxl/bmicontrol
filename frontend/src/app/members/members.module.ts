@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { MembersRoutingModule } from './members-routing.module';
 import { MemberListComponent } from './member-list/member-list.component';
@@ -19,13 +21,15 @@ import { ComponentsModule } from '../components/components.module';
   ],
   imports: [
     CommonModule,
+    FormsModule,
 
     ButtonModule,
-    MembersRoutingModule,
     TableModule,
     TabViewModule,
     TooltipModule,
-    ComponentsModule
+    ComponentsModule,
+    DropdownModule,
+    MembersRoutingModule,
   ]
 })
 export class MembersModule { }

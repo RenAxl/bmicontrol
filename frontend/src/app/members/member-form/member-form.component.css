@@ -1,0 +1,37 @@
+.member-form-container{
+    padding: 10px;
+}
+
+.member-card {
+    padding: 20px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+  }
+  
+  .member-form-buttons {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .member-form-buttons-cancel {
+    margin-left: 20px;
+  }
+  
+  .member-form-button {
+    height: 50px;
+    width: 110px;
+    border-radius: 10px;
+    font-weight: bold;
+  }
+
+  @media (min-width: 576px) {
+    .member-form-container{
+        padding: 20px 100px;
+    }
+
+    .member-form-buttons {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  

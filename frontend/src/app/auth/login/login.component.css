@@ -45,6 +45,13 @@
     text-align: center;
     margin-bottom: 30px;
   }
+
+  .login-form-button {
+    height: 50px;
+    width: 110px;
+    border-radius: 10px;
+    font-weight: bold;
+  }
   
   @media (min-width: 576px) {
     .login-card {
@@ -54,7 +61,7 @@
 
   @media (min-width: 768px) {
     .login-card {
-      height: 750px;
+      height: 650px;
     }
   }
   

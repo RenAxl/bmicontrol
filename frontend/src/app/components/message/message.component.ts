@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-message',
   template: `
-    <div *ngIf="temErro()"
+    <div *ngIf="Error()"
       class="p-message p-message-error">
       {{ text }}
     </div>
@@ -22,7 +22,7 @@ export class MessageComponent {
   @Input() control: any;
   @Input() text: string = '';
 
-  temErro(): boolean {
+  Error(): boolean {
     return this.control.hasError(this.error) && this.control.dirty;
   }
 

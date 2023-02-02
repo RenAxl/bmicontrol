@@ -4,9 +4,10 @@
       <div class="col-12">
         <h1>Dados do Usuário</h1>
       </div>
-      <div class="row user-inputs-container">
+
+      <div class="row user-form-inputs">
         <div class="user-form-inputs-left col-lg-6">
-          <div class="mb-3">
+          <div>
             <input
               pInputText
               placeholder="Nome"
@@ -32,7 +33,7 @@
           >
           </app-message>
 
-          <div class="mb-3">
+          <div class="mt-3">
             <input
               pInputText
               placeholder="E-mail"
@@ -52,8 +53,8 @@
           ></app-message>
         </div>
 
-        <div class="user-form-inputs-right col-lg-6 mb-6">
-          <div class="mb-3">
+        <div class="user-form-inputs-right col-lg-6 mb-8">
+          <div>
             <p-dropdown
               [options]="roles"
               placeholder="Selecione"

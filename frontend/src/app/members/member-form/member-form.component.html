@@ -1,108 +1,104 @@
 <div class="member-form-container">
-    <div class="member-card">
-      <form #memberForm="ngForm" (ngSubmit)="save(memberForm)">
-        <div class="col-12">
-          <h1>Dados do Aluno</h1>
+  <div class="member-card">
+    <form #memberForm="ngForm" (ngSubmit)="save(memberForm)">
+      <div class="col-12">
+        <h1>Dados do Aluno</h1>
+      </div>
+      
+      <div class="member-inputs-container col-sm-6">
+        <div class="mt-1">
+          <input
+            pInputText
+            placeholder="Nome"
+            type="text"
+            name="name"
+            [(ngModel)]="member.name"
+            #name="ngModel"
+            [required]="true"
+            minlength="5"
+            class="form-control"
+          />
         </div>
-        <div class="member-inputs-container">
-          <div class="member-form-inputs-left col-lg-6">
-            <div class="mb-3">
-              <input
-                pInputText
-                placeholder="Nome"
-                type="text"
-                name="name"
-                [(ngModel)]="member.name"
-                #name="ngModel"
-                [required]="true"
-                minlength="5"
-                class="form-control"
-              />
-            </div>
-  
-            <app-message
-              [control]="name"
-              error="required"
-              text="Informe o nome completo do aluno"
-            ></app-message>
-            <app-message
-              [control]="name"
-              error="minlength"
-              text="Mínimo de {{ name.errors?.['minlength']?.requiredLength }} caracteres. Você digitou apenas {{ name.errors?.['minlength']?.actualLength }}"
-            >
-            </app-message>
-  
-            <div class="mb-3">
-              <p-dropdown
-                [options]="trainers"
-                placeholder="Selecione"
-                name="trainer"
-                [(ngModel)]="member.trainers.id"
-                #trainer
-                [required]="true"
-                styleClass="form-control"
-              ></p-dropdown>
-            </div>
-          </div>
-  
-          <div class="member-form-inputs-right col-lg-6 mb-6">
-            <div class="mb-3">
-              <p-inputNumber
-                placeholder="Altura"
-                [(ngModel)]="member.height"
-                name="height"
-                #height="ngModel"
-                [required]="true"
-                inputStyleClass="form-control "
-              >
-              </p-inputNumber>
-            </div>
-  
-            <app-message
-              [control]="name"
-              error="required"
-              text="Informe a altura do aluno"
-            ></app-message>
-  
-            <div class="mb-3">
-              <p-inputNumber
-                placeholder="Peso"
-                [(ngModel)]="member.weight"
-                name="weight"
-                #weight="ngModel"
-                [required]="true"
-                inputStyleClass="form-control"
-              >
-              </p-inputNumber>
-            </div>
-  
-            <app-message
-              [control]="name"
-              error="required"
-              text="Informe o peso do aluno"
-            ></app-message>
-          </div>
+
+        <app-message
+          [control]="name"
+          error="required"
+          text="Informe o nome completo do aluno"
+        ></app-message>
+        <app-message
+          [control]="name"
+          error="minlength"
+          text="Mínimo de {{ name.errors?.['minlength']?.requiredLength }} caracteres."
+        >
+        </app-message>
+
+        <div class="mt-3">
+          <p-dropdown
+            [options]="trainers"
+            placeholder="Selecione"
+            name="trainer"
+            [(ngModel)]="member.trainers.id"
+            #trainer
+            [required]="true"
+            styleClass="form-control"
+          ></p-dropdown>
         </div>
-  
-        <div class="member-form-buttons">
-          <button
-            type="submit"
-            [disabled]="memberForm.invalid"
-            class="btn btn-primary member-form-button"
+
+        <div class="mt-3">
+          <p-inputNumber
+            placeholder="Altura"
+            [(ngModel)]="member.height"
+            name="height"
+            #height="ngModel"
+            [required]="true"
+            inputStyleClass="form-control "
           >
-            SALVAR
-          </button>
-  
-          <a routerLink="/admin/members/list">
-            <button
-              type="button"
-              class="btn btn-outline-danger member-form-button ml-3"
-            >
-              CANCELAR
-            </button>
-          </a>
+          </p-inputNumber>
         </div>
-      </form>
-    </div>
+
+        <app-message
+          [control]="height"
+          error="required"
+          text="Informe a altura do aluno"
+        ></app-message>
+
+        <div class="mt-3">
+          <p-inputNumber
+            placeholder="Peso"
+            [(ngModel)]="member.weight"
+            name="weight"
+            #weight="ngModel"
+            [required]="true"
+            inputStyleClass="form-control"
+          >
+          </p-inputNumber>
+        </div>
+
+        <app-message
+          [control]="weight"
+          error="required"
+          text="Informe o peso do aluno"
+        ></app-message>
+      </div>
+
+      <div class="member-form-buttons mt-6">
+        <button
+          type="submit"
+          [disabled]="memberForm.invalid"
+          class="btn btn-primary member-form-button"
+        >
+          SALVAR
+        </button>
+
+        <a routerLink="/admin/members/list">
+          <button
+            type="button"
+            class="btn btn-outline-danger member-form-button ml-3"
+          >
+            CANCELAR
+          </button>
+        </a>
+      </div>
+    </form>
   </div>
-  
+</div>

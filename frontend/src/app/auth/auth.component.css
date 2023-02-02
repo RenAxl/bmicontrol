@@ -4,7 +4,7 @@
     padding: 20px;
   }
   
-  .auth-banner-container {
+  .auth-image-container {
     display: none;
   }
   
@@ -29,40 +29,40 @@
       padding: 40px;
     }
   
-    .auth-banner-container {
+    .auth-image-container {
       display: flex;
       flex-direction: column;
       width: 500px;
     }
   
-    .auth-banner-container h1 {
+    .auth-image-container h1 {
       font-size: 30px;
       letter-spacing: -0.015em;
       color: blue;
       margin-bottom: 15px;
     }
-    .auth-banner-container p {
+    .auth-image-container p {
       font-size: 18px;
       letter-spacing: -0.015em;
       color: #9e9e9e;
     }
   
-    .auth-banner-container svg {
+    .auth-image-container svg {
       width: 80%;
     }
   }
   
   @media (min-width: 1400px) {
-    .auth-banner-container {
+    .auth-image-container {
       width: 650px;
     }
   
-    .auth-banner-container h1 {
+    .auth-image-container h1 {
       font-size: 55px;
       margin-bottom: 25px;
     }
   
-    .auth-banner-container p {
+    .auth-image-container p {
       font-size: 24px;
     }
   }

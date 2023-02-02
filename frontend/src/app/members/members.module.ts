@@ -8,6 +8,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextModule } from 'primeng/inputtext';
 
 import { MembersRoutingModule } from './members-routing.module';
 import { MemberListComponent } from './member-list/member-list.component';
@@ -25,6 +26,7 @@ import { ComponentsModule } from '../components/components.module';
     FormsModule,
 
     ButtonModule,
+    InputTextModule,
     InputNumberModule,
     TableModule,
     TabViewModule,

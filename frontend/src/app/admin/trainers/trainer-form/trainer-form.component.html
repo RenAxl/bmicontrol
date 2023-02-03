@@ -79,8 +79,8 @@
               placeholder="Celular"
               name="cellular"
               mask="(99) 9 9999-9999"
-              [(ngModel)]="trainer.cellular"
-              #cellular="ngModel"
+              [(ngModel)]="trainer.cellPhone"
+              #cellPhone="ngModel"
               [required]="true"
               styleClass="form-control"
             ></p-inputMask>
@@ -88,7 +88,7 @@
           </div>
 
           <app-message
-            [control]="cellular"
+            [control]="cellPhone"
             error="required"
             text="Informe o celular com o DDD"
           ></app-message>

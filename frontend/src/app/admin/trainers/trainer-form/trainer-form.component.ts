@@ -5,7 +5,7 @@ export class Trainer {
   name?: string;
   age?: number;
   cpf?: string;
-  cellular?: string;
+  cellPhone?: string;
 }
 
 @Component({

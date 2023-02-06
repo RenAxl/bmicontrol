@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Table(name = "tb_trainer")
 public class Trainer implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -24,8 +24,12 @@ public class Trainer implements Serializable {
 	private String cpf;
 	private String cellPhone;
 
-	@OneToMany(mappedBy="trainer")
+	// Pra evitar o loop, não criar função getMembers(). Não sei se atrapalha em consultas SQL.
+	@OneToMany(mappedBy = "trainer")
 	private List<Member> members = new ArrayList<>();
+
+	public Trainer() {
+	}
 
 	public Trainer(Long id, String name, Integer age, String cpf, String cellPhone) {
 		this.id = id;
@@ -73,10 +77,6 @@ public class Trainer implements Serializable {
 
 	public void setCellPhone(String cellPhone) {
 		this.cellPhone = cellPhone;
-	}
-
-	public List<Member> getMembers() {
-		return members;
 	}
 
 	@Override

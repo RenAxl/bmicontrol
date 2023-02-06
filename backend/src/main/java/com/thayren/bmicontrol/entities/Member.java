@@ -20,9 +20,9 @@ public class Member implements Serializable {
 	private Long id;
 	private String name;
 
-	private Integer height;
-	private Integer weight;
-	private Integer bmi;
+	private Double height;
+	private Double weight;
+	private Double bmi;
 	private String rank;
 
 	@ManyToOne
@@ -32,7 +32,7 @@ public class Member implements Serializable {
 	public Member() {
 	}
 
-	public Member(Long id, String name, Integer height, Integer weight, Trainer trainer) {
+	public Member(Long id, String name, Double height, Double weight, Trainer trainer) {
 		this.id = id;
 		this.name = name;
 		this.height = height;
@@ -56,19 +56,19 @@ public class Member implements Serializable {
 		this.name = name;
 	}
 
-	public Integer getHeight() {
+	public Double getHeight() {
 		return height;
 	}
 
-	public void setHeight(Integer height) {
+	public void setHeight(Double height) {
 		this.height = height;
 	}
 
-	public Integer getWeight() {
+	public Double getWeight() {
 		return weight;
 	}
 
-	public void setWeight(Integer weight) {
+	public void setWeight(Double weight) {
 		this.weight = weight;
 	}
 
@@ -80,23 +80,29 @@ public class Member implements Serializable {
 		this.trainer = trainer;
 	}
 
-	public Integer calculateBMI(Integer height, Integer weight) {
+	public void calculateBMI(Double height, Double weight) {
 		this.bmi = weight / (height * height);
-		return this.bmi;
 	}
 
-	public String calculateRank(Integer bmi) {
+	public Double getBmi() {
+		return bmi;
+	}
+
+	public void calculateRank(Double bmi) {
 		if (bmi < 18.5)
 			this.rank = "MAGREZA";
-		if (bmi >= 18.5 || bmi <= 24.9)
+		if (bmi >= 18.5 && bmi <= 24.9)
 			this.rank = "NORMAL";
-		if (bmi >= 25.0 || bmi <= 29.9)
+		if (bmi >= 25.0 && bmi <= 29.9)
 			this.rank = "SOBREPESO";
-		if (bmi >= 30.0 || bmi <= 39.9)
+		if (bmi >= 30.0 && bmi <= 39.9)
 			this.rank = "OBESIDADE";
 		if (bmi > 40.0)
 			this.rank = "OBESIDADE GRAVE";
-		return this.rank;
+	}
+
+	public String getRank() {
+		return rank;
 	}
 
 	@Override

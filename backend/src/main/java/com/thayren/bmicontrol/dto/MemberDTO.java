@@ -2,6 +2,11 @@ package com.thayren.bmicontrol.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
+import com.sun.istack.NotNull;
 import com.thayren.bmicontrol.entities.Member;
 import com.thayren.bmicontrol.entities.Trainer;
 
@@ -9,11 +14,22 @@ public class MemberDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	
+	@Size(min = 5, max = 60, message ="O nome deve ter entre 5 a 60 caracteres")
+	@NotBlank(message = "Campo requerido")
 	private String name;
+	
+	@Positive(message = "A altura deve ser um valor positivo")
+	@NotNull
 	private Double height;
+	
+	@Positive(message = "O peso deve ser um valor positivo")
+	@NotNull
 	private Double weight;
+	
 	private Double bmi;
 	private String rank;
+	
 	private Trainer trainer;
 
 	public MemberDTO() {

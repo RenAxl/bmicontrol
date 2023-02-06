@@ -2,6 +2,8 @@ package com.thayren.bmicontrol.resources;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -51,7 +53,7 @@ public class MemberResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<MemberDTO> insert(@RequestBody MemberDTO memberDto){
+	public ResponseEntity<MemberDTO> insert(@RequestBody @Valid MemberDTO memberDto){
 		memberDto = service.insert(memberDto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(memberDto.getId()).toUri();
@@ -59,7 +61,7 @@ public class MemberResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<MemberDTO> update(@PathVariable Long id, @RequestBody MemberDTO memberDto){
+	public ResponseEntity<MemberDTO> update(@PathVariable Long id, @RequestBody @Valid MemberDTO memberDto){
 		memberDto = service.update(id, memberDto);
 		return ResponseEntity.ok().body(memberDto);
 	}

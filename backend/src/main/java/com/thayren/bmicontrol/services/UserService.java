@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.thayren.bmicontrol.dto.RoleDTO;
 import com.thayren.bmicontrol.dto.UserDTO;
+import com.thayren.bmicontrol.dto.UserInsertDTO;
+import com.thayren.bmicontrol.dto.UserUpdateDTO;
 import com.thayren.bmicontrol.entities.Role;
 import com.thayren.bmicontrol.entities.User;
 import com.thayren.bmicontrol.repositories.RoleRepository;
@@ -44,18 +46,18 @@ public class UserService {
 	}
 
 	@Transactional
-	public UserDTO insert(UserDTO dto) {
+	public UserDTO insert(UserInsertDTO dto) {
 		User entity = new User();
-		copyDtoToEntity(dto, entity);
+		copyDtoInsertToEntity(dto, entity);
 		entity = repository.save(entity);
 		return new UserDTO(entity);
 	}
 
 	@Transactional
-	public UserDTO update(Long id, UserDTO dto) {
+	public UserDTO update(Long id, UserUpdateDTO dto) {
 		try {
 			User entity = repository.getOne(id);
-			copyDtoToEntity(dto, entity);
+			copyDtoUpdateToEntity(dto, entity);
 			entity = repository.save(entity);
 
 			return new UserDTO(entity);
@@ -73,7 +75,20 @@ public class UserService {
 		}
 	}
 
-	private void copyDtoToEntity(UserDTO dto, User entity) {
+	private void copyDtoInsertToEntity(UserInsertDTO dto, User entity) {
+		entity.setName(dto.getName());
+		entity.setEmail(dto.getEmail());
+		entity.setPassword(dto.getPassword());
+
+		entity.getRoles().clear();
+
+		for (RoleDTO roleDto : dto.getRoles()) {
+			Role role = roleRepository.getOne(roleDto.getId());
+			entity.getRoles().add(role);
+		}
+	}
+	
+	private void copyDtoUpdateToEntity(UserUpdateDTO dto, User entity) {
 		entity.setName(dto.getName());
 		entity.setEmail(dto.getEmail());
 		entity.setPassword(dto.getPassword());

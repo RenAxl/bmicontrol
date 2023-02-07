@@ -2,15 +2,32 @@ package com.thayren.bmicontrol.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
+import com.sun.istack.NotNull;
 import com.thayren.bmicontrol.entities.Trainer;
 
 public class TrainerDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	
+	@Size(min = 5, max = 60, message ="O nome deve ter entre 5 a 60 caracteres")
+	@NotBlank(message = "Campo requerido")
 	private String name;
+	
+	@Positive(message = "A idade deve ser um valor positivo")
+	@NotNull
 	private Integer age;
+	
+	@Size(min = 11, max = 15, message ="O CPF deve ter entre 13 a 15 caracteres")
+	@NotBlank(message = "Campo requerido")
 	private String cpf;
+	
+	@Size(min = 8, max = 15, message ="O numero do celular deve ter entre 8 a 15 caracteres")
+	@NotBlank(message = "Campo requerido")
 	private String cellPhone;
 
 	public TrainerDTO() {

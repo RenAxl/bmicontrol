@@ -2,6 +2,8 @@ package com.thayren.bmicontrol.resources;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -51,7 +53,7 @@ public class TrainerResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<TrainerDTO> insert(@RequestBody TrainerDTO trainerDto){
+	public ResponseEntity<TrainerDTO> insert(@Valid @RequestBody TrainerDTO trainerDto){
 		trainerDto = service.insert(trainerDto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(trainerDto.getId()).toUri();
@@ -59,7 +61,7 @@ public class TrainerResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<TrainerDTO> update(@PathVariable Long id, @RequestBody TrainerDTO trainerDto){
+	public ResponseEntity<TrainerDTO> update(@PathVariable Long id, @Valid @RequestBody TrainerDTO trainerDto){
 		trainerDto = service.update(id, trainerDto);
 		return ResponseEntity.ok().body(trainerDto);
 	}

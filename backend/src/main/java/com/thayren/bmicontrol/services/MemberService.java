@@ -78,7 +78,6 @@ public class MemberService {
 		entity.setTrainer(memberDto.getTrainer());
 		entity.setHeight(memberDto.getHeight());
 		entity.setWeight(memberDto.getWeight());
-
 	}
 
 }

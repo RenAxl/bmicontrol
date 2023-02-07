@@ -30,8 +30,7 @@ public class User implements Serializable {
 	private String email;
 	private String password;
 
-	@ManyToMany(fetch = FetchType.EAGER) // Obriga no banco que o usuários ja venham com os perfis(roles) associados a
-											// ele.
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 

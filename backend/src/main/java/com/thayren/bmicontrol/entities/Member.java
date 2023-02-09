@@ -32,11 +32,13 @@ public class Member implements Serializable {
 	public Member() {
 	}
 
-	public Member(Long id, String name, Double height, Double weight, Trainer trainer) {
+	public Member(Long id, String name, Double height, Double weight, Double bmi, String rank, Trainer trainer) {
 		this.id = id;
 		this.name = name;
 		this.height = height;
 		this.weight = weight;
+		this.bmi = bmi;
+		this.rank = rank;
 		this.trainer = trainer;
 	}
 

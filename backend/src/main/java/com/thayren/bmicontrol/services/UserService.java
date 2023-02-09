@@ -59,7 +59,8 @@ public class UserService implements UserDetailsService {
 	@Transactional
 	public UserDTO insert(UserInsertDTO dto) {
 		User entity = new User();
-		copyDtoInsertToEntity(dto, entity);
+		copyDtoToEntity(dto, entity);
+		entity.setPassword(passwordEncoder.encode(dto.getPassword()));
 		entity = repository.save(entity);
 		return new UserDTO(entity);
 	}
@@ -68,7 +69,8 @@ public class UserService implements UserDetailsService {
 	public UserDTO update(Long id, UserUpdateDTO dto) {
 		try {
 			User entity = repository.getOne(id);
-			copyDtoUpdateToEntity(dto, entity);
+			copyDtoToEntity(dto, entity);
+			entity.setPassword(passwordEncoder.encode(dto.getPassword()));
 			entity = repository.save(entity);
 
 			return new UserDTO(entity);
@@ -86,24 +88,9 @@ public class UserService implements UserDetailsService {
 		}
 	}
 
-	private void copyDtoInsertToEntity(UserInsertDTO dto, User entity) {
+	private void copyDtoToEntity(UserDTO dto, User entity) {
 		entity.setName(dto.getName());
 		entity.setEmail(dto.getEmail());
-		entity.setPassword(passwordEncoder.encode(dto.getPassword()));
-
-		entity.getRoles().clear();
-
-		for (RoleDTO roleDto : dto.getRoles()) {
-			Role role = roleRepository.getOne(roleDto.getId());
-			entity.getRoles().add(role);
-		}
-	}
-	
-	private void copyDtoUpdateToEntity(UserUpdateDTO dto, User entity) {
-		entity.setName(dto.getName());
-		entity.setEmail(dto.getEmail());
-		entity.setPassword(passwordEncoder.encode(dto.getPassword()));
-
 		entity.getRoles().clear();
 
 		for (RoleDTO roleDto : dto.getRoles()) {

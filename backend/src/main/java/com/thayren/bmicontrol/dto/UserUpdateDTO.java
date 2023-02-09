@@ -8,7 +8,7 @@ public class UserUpdateDTO extends UserDTO {
 		
 	private String password;
 	
-	UserUpdateDTO() {
+	public UserUpdateDTO() {
 		super();
 	}
 	

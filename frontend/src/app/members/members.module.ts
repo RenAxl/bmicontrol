@@ -1,6 +1,8 @@
+import { MemberService } from './member.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
@@ -24,6 +26,7 @@ import { ComponentsModule } from '../components/components.module';
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
 
     ButtonModule,
     InputTextModule,
@@ -34,6 +37,7 @@ import { ComponentsModule } from '../components/components.module';
     ComponentsModule,
     DropdownModule,
     MembersRoutingModule,
-  ]
+  ],
+  providers: [MemberService]
 })
 export class MembersModule { }

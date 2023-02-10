@@ -39,48 +39,48 @@
 
               <td>
                 <span class="p-column-title">Instrutor</span>
-                {{ member.trainer }}
+                {{ member.trainer.name }}
               </td>
 
               <td>
                 <span class="p-column-title">Altura</span>
-                {{ member.height }}
+                {{ member.height | number: "1.2-2" }}
               </td>
 
               <td>
                 <span class="p-column-title">Peso</span>
-                {{ member.weight }}
+                {{ member.weight | number: "1.2-2" }}
               </td>
 
               <td>
                 <span class="p-column-title">IMC</span>
-                {{ member.imc }}
+                {{ member.bmi | number: "1.2-2" }}
               </td>
 
               <td>
                 <span class="p-column-title">Classificação</span>
-                <div *ngIf="member.classification === 'MAGREZA'">
+                <div *ngIf="member.rank === 'MAGREZA'">
                   <span [style.color]="'DarkTurquoise'">{{
-                    member.classification
+                    member.rank
                   }}</span>
                 </div>
-                <div *ngIf="member.classification === 'NORMAL'">
+                <div *ngIf="member.rank === 'NORMAL'">
                   <span [style.color]="'Lime'">{{
-                    member.classification
+                    member.rank
                   }}</span>
                 </div>
-                <div *ngIf="member.classification === 'SOBREPESO'">
+                <div *ngIf="member.rank === 'SOBREPESO'">
                   <span [style.color]="'Goldenrod'">{{
-                    member.classification
+                    member.rank
                   }}</span>
                 </div>
-                <div *ngIf="member.classification === 'OBESIDADE'">
+                <div *ngIf="member.rank === 'OBESIDADE'">
                   <span [style.color]="'DarkRed'">{{
-                    member.classification
+                    member.rank
                   }}</span>
                 </div>
-                <div *ngIf="member.classification === 'OBESIDADE GRAVE'">
-                  <span [style.color]="'red'">{{ member.classification }}</span>
+                <div *ngIf="member.rank === 'OBESIDADE GRAVE'">
+                  <span [style.color]="'red'">{{ member.rank }}</span>
                 </div>
               </td>
 

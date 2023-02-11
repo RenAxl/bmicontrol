@@ -5,7 +5,9 @@
   </div>
   <div class="member-filter-container">
     <a routerLink="/members/create">
-      <button class="btn btn-primary text-white btn-crud-new">NOVO ALUNO</button>
+      <button class="btn btn-primary text-white btn-crud-new">
+        NOVO ALUNO
+      </button>
     </a>
     <app-filter text="Digite o nome do aluno"></app-filter>
   </div>
@@ -16,7 +18,11 @@
           [value]="members"
           [responsive]="true"
           [paginator]="true"
-          [rows]="4"
+          [rows]="pagination.linesPerPage"
+          [lazy]="true"
+          [totalRecords]="totalElements"
+          (onLazyLoad)="changePage($event)"
+          #memberTable
         >
           <ng-template pTemplate="header">
             <tr>
@@ -44,40 +50,32 @@
 
               <td>
                 <span class="p-column-title">Altura</span>
-                {{ member.height | number: "1.2-2" }}
+                {{ member.height | number : "1.2-2" }}
               </td>
 
               <td>
                 <span class="p-column-title">Peso</span>
-                {{ member.weight | number: "1.2-2" }}
+                {{ member.weight | number : "1.2-2" }}
               </td>
 
               <td>
                 <span class="p-column-title">IMC</span>
-                {{ member.bmi | number: "1.2-2" }}
+                {{ member.bmi | number : "1.2-2" }}
               </td>
 
               <td>
                 <span class="p-column-title">Classificação</span>
                 <div *ngIf="member.rank === 'MAGREZA'">
-                  <span [style.color]="'DarkTurquoise'">{{
-                    member.rank
-                  }}</span>
+                  <span [style.color]="'DarkTurquoise'">{{ member.rank }}</span>
                 </div>
                 <div *ngIf="member.rank === 'NORMAL'">
-                  <span [style.color]="'Lime'">{{
-                    member.rank
-                  }}</span>
+                  <span [style.color]="'Lime'">{{ member.rank }}</span>
                 </div>
                 <div *ngIf="member.rank === 'SOBREPESO'">
-                  <span [style.color]="'Goldenrod'">{{
-                    member.rank
-                  }}</span>
+                  <span [style.color]="'Goldenrod'">{{ member.rank }}</span>
                 </div>
                 <div *ngIf="member.rank === 'OBESIDADE'">
-                  <span [style.color]="'DarkRed'">{{
-                    member.rank
-                  }}</span>
+                  <span [style.color]="'DarkRed'">{{ member.rank }}</span>
                 </div>
                 <div *ngIf="member.rank === 'OBESIDADE GRAVE'">
                   <span [style.color]="'red'">{{ member.rank }}</span>

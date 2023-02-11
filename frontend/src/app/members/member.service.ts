@@ -1,8 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, } from '@angular/common/http';
 
 import { AppConstants } from '../app-constants';
 import { Observable } from 'rxjs';
+
+export class MemberPagination {
+  page = 0;
+  linesPerPage = 4;
+  direction?: string = "ASC";
+  orderBy?: string = "name";
+}
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +17,15 @@ import { Observable } from 'rxjs';
 export class MemberService {
   constructor(private http: HttpClient) {}
 
-  list(): Observable<any> {
+  list(pagination: MemberPagination): Observable<any> {
+
+    let params = new HttpParams()
+    .set('page', pagination.page)
+    .set('LinesPerPage', pagination.linesPerPage)
+    .set('direction', String(pagination.direction))
+    .set('orderBy', String(pagination.orderBy));
+
     return this.http
-      .get<any>(AppConstants.backendServer + 'members');
+      .get<any>(AppConstants.backendServer + 'members', { params });
   }
 }

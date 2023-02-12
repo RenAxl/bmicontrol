@@ -9,7 +9,7 @@
         NOVO ALUNO
       </button>
     </a>
-    <app-filter text="Digite o nome do aluno"></app-filter>
+    <app-filter text="Digite o nome do aluno" (search)="searchMember($event)"></app-filter>
   </div>
   <div class="member-card">
     <div class="grid">

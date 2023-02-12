@@ -17,9 +17,10 @@ export class MemberPagination {
 export class MemberService {
   constructor(private http: HttpClient) {}
 
-  list(pagination: MemberPagination): Observable<any> {
+  list(pagination: MemberPagination, filterName: string): Observable<any> {
 
     let params = new HttpParams()
+    .set('name', filterName)
     .set('page', pagination.page)
     .set('LinesPerPage', pagination.linesPerPage)
     .set('direction', String(pagination.direction))

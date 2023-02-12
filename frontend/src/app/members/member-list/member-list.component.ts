@@ -19,6 +19,8 @@ export class MemberListComponent implements OnInit {
 
   members: Member[] = [];
 
+  filterName: string = '';
+
   @ViewChild('memberTable') grid!: Table;
 
   constructor(private memberService: MemberService) {}
@@ -29,11 +31,16 @@ export class MemberListComponent implements OnInit {
   list(page: number = 0): void {
     this.pagination.page = page;
 
-    this.memberService.list(this.pagination).subscribe((data)=> {
-      console.log(data.content);
+    this.memberService.list(this.pagination, this.filterName).subscribe((data)=> {
       this.members = data.content;
       this.totalElements = data.totalElements
     });
+  }
+
+  searchMember(name: string){
+    console.log("Evento emitido no componente pai: " + name);
+    this.filterName = name;
+    this.list();
   }
 
   changePage(event: LazyLoadEvent){

@@ -42,4 +42,9 @@ export class TrainerService {
     return this.http.put<any>(AppConstants.backendServer + 'trainers/' + trainer.id, trainer);
   }
 
+  delete(id: Number): Observable<any> {
+    return this.http.delete(AppConstants.backendServer + 'trainers/' + id);
+  }
+
+
 }

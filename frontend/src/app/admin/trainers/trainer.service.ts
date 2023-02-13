@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { AppConstants } from 'src/app/app-constants';
+import { Trainer } from 'src/app/entities/Trainer';
 
 export class TrainerPagination {
   page = 0;
@@ -28,4 +29,9 @@ export class TrainerService {
 
     return this.http.get<any>(AppConstants.backendServer + 'trainers', { params });
   }
+
+  insert(trainer: Trainer) : Observable<any> {
+    return this.http.post<any>(AppConstants.backendServer + 'trainers', trainer);
+  }
+
 }

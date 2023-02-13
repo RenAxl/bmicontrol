@@ -26,7 +26,7 @@ public class TrainerDTO implements Serializable {
 	@NotBlank(message = "Campo requerido")
 	private String cpf;
 	
-	@Size(min = 8, max = 15, message ="O numero do celular deve ter entre 8 a 15 caracteres")
+	@Size(min = 7, max = 20, message ="O numero do celular deve ter entre 8 a 15 caracteres")
 	@NotBlank(message = "Campo requerido")
 	private String cellPhone;
 

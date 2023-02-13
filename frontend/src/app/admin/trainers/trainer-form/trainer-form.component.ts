@@ -1,12 +1,6 @@
+import { TrainerService } from './../trainer.service';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-
-export class Trainer {
-  name?: string;
-  age?: number;
-  cpf?: string;
-  cellPhone?: string;
-}
+import { Trainer } from 'src/app/entities/Trainer';
 
 @Component({
   selector: 'app-trainer-form',
@@ -18,13 +12,21 @@ export class TrainerFormComponent implements OnInit {
 
  trainer: Trainer = new Trainer();
 
-  constructor() { }
+  constructor(private trainerService: TrainerService) { }
 
   ngOnInit(): void {
   }
 
-  save(form: NgForm){
-    console.log(form.value);
+  save(){
+    this.insert();
   }
+
+insert(){
+  console.log(this.trainer);
+  this.trainerService.insert(this.trainer).subscribe((data) => {
+    console.log(data);
+    this.trainer = new Trainer();
+  })
+}
 
 }

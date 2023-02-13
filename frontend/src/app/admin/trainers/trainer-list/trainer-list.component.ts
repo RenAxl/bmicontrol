@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Trainer } from 'src/app/entities/Trainer';
 
 import { Table } from 'primeng/table';
-import { TrainerService } from '../trainer.service';
+import { LazyLoadEvent } from 'primeng/api';
+
+import { TrainerPagination, TrainerService } from '../trainer.service';
+import { Trainer } from 'src/app/entities/Trainer';
 
 @Component({
   selector: 'app-trainer-list',
@@ -12,18 +14,28 @@ import { TrainerService } from '../trainer.service';
 export class TrainerListComponent implements OnInit {
   trainers: Trainer[] = [];
 
+  pagination = new TrainerPagination();
+
+  totalElements: number = 0;
+
   @ViewChild('trainerTable') grid!: Table;
 
   constructor(private trainerService: TrainerService) {}
 
-  ngOnInit(): void {
-    this.list();
-  }
+  ngOnInit(): void {}
 
-  list(): void {
-    this.trainerService.list().subscribe((data) => {
+  list(page: number = 0): void {
+    this.pagination.page = page;
+
+    this.trainerService.list(this.pagination).subscribe((data) => {
       console.log(data.content);
       this.trainers = data.content;
+      this.totalElements = data.totalElements
     });
+  }
+
+  changePage(event: LazyLoadEvent) {
+    const page = event!.first! / event!.rows!; 
+    this.list(page);
   }
 }

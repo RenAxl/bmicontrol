@@ -23,7 +23,7 @@ public class ResourceExceptionHandler {
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(status.value());
-		err.setError("Resource not found");
+		err.setError("Erro de backend: Resource not found");
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
@@ -35,7 +35,7 @@ public class ResourceExceptionHandler {
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(status.value());
-		err.setError("Database exception");
+		err.setError("Erro de backend: Database exception");
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
@@ -47,7 +47,7 @@ public class ResourceExceptionHandler {
 		ValidationError err = new ValidationError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(status.value());
-		err.setError("Validation exception");
+		err.setError("Erro de backend: Validation exception");
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		

@@ -7,6 +7,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
 import { NavbarComponent } from './navbar/navbar.component';
+import { ErrorHandlerService } from './error-handler.service';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -24,7 +25,8 @@ registerLocaleData(localePt, 'pt-BR');
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },
-    MessageService
+    MessageService,
+    ErrorHandlerService,
   ]
 })
 export class CoreModule {}

@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/api';
 
 import { TrainerService } from './../trainer.service';
 import { Trainer } from 'src/app/entities/Trainer';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
   selector: 'app-trainer-form',
@@ -20,6 +21,7 @@ export class TrainerFormComponent implements OnInit {
     private trainerService: TrainerService,
     private router: Router,
     private messageService: MessageService,
+    private errorHandler: ErrorHandlerService,
     ) { }
 
   ngOnInit(): void {
@@ -34,7 +36,8 @@ insert(){
   this.trainerService.insert(this.trainer).subscribe((data) => {
     this.router.navigate(['/admin/trainers/list']);
     this.messageService.add({ severity: 'success', detail: 'Instrutor cadastrado com sucesso!' });
-  })
+  }, error => this.errorHandler.handle(error)); 
+  //.catch(error => this.errorHandler.handle(error))
 }
 
 }

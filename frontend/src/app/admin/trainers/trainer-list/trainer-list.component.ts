@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Table } from 'primeng/table';
-import { LazyLoadEvent, MessageService } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 
 import { TrainerPagination, TrainerService } from '../trainer.service';
 import { Trainer } from 'src/app/entities/Trainer';
@@ -26,7 +26,8 @@ export class TrainerListComponent implements OnInit {
   constructor(
     private trainerService: TrainerService,
     private messageService: MessageService,
-    private errorHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService,
+    private confirmationService: ConfirmationService,
     ) {}
 
   ngOnInit(): void {}
@@ -54,9 +55,15 @@ export class TrainerListComponent implements OnInit {
   }
 
   delete(trainer: any) {
-    this.trainerService.delete(trainer.id).subscribe(() => {
-      this.grid.reset();
-      this.messageService.add({ severity: 'success', detail: 'Instrutor excluído com sucesso!' })
-    }, error => this.errorHandler.handle(error));
+    this.confirmationService.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => {
+        this.trainerService.delete(trainer.id).subscribe(() => {
+          this.grid.reset();
+          this.messageService.add({ severity: 'success', detail: 'Instrutor excluído com sucesso!' })
+        }, error => this.errorHandler.handle(error));
+      }
+    });
+
   }
 }

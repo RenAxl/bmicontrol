@@ -27,8 +27,7 @@ export class TrainerFormComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('trainerId'); // trainerId é o que esta configurado na rota.
-    console.log(id);
-
+    
     if(id !=null){
       this.trainerService.findById(id).subscribe(data => {
         console.log(data);

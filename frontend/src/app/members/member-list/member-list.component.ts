@@ -1,8 +1,8 @@
-import { Member } from './../member-form/member-form.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { LazyLoadEvent } from 'primeng/api';
 import { Table } from 'primeng/table';
+import { Member } from 'src/app/entities/Member';
 
 import { MemberPagination, MemberService } from '../member.service';
 

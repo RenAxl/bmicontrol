@@ -1,36 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Trainer } from 'src/app/entities/Trainer';
+
+import { Table } from 'primeng/table';
+import { TrainerService } from '../trainer.service';
 
 @Component({
   selector: 'app-trainer-list',
   templateUrl: './trainer-list.component.html',
-  styleUrls: ['./trainer-list.component.css']
+  styleUrls: ['./trainer-list.component.css'],
 })
 export class TrainerListComponent implements OnInit {
+  trainers: Trainer[] = [];
 
-  trainers = [
-    {
-      name: 'José Sardinha',
-      age: '30',
-      cpf: '000.000.000-00',
-      cellPhone: '31 9 1111-1111'    
-    },
-    {
-      name: 'Marcelo Zulu',
-      age: '30',
-      cpf: '000.000.000-00',
-      cellPhone: '31 9 1111-1111'    
-    },
-    {
-      name: 'Luiz Dias',
-      age: '30',
-      cpf: '000.000.000-00',
-      cellPhone: '31 9 1111-1111'    
-    },
-  ]
+  @ViewChild('trainerTable') grid!: Table;
 
-  constructor() { }
+  constructor(private trainerService: TrainerService) {}
 
   ngOnInit(): void {
+    this.list();
   }
 
+  list(): void {
+    this.trainerService.list().subscribe((data) => {
+      console.log(data.content);
+      this.trainers = data.content;
+    });
+  }
 }

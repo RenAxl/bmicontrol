@@ -3,6 +3,7 @@ import { HttpClient, HttpParams, } from '@angular/common/http';
 
 import { AppConstants } from '../app-constants';
 import { Observable } from 'rxjs';
+import { Member } from '../entities/Member';
 
 export class MemberPagination {
   page = 0;
@@ -29,4 +30,11 @@ export class MemberService {
     return this.http
       .get<any>(AppConstants.backendServer + 'members', { params });
   }
+
+  /*
+  insert(member: Member) : Observable<any> {
+    return this.http.post<any>(AppConstants.backendServer, member);
+  }
+*/
 }
+

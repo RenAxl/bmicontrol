@@ -7,5 +7,5 @@ export class Member {
   weight?: number;
   imc?: number;
   rank?: string;
-  trainer?: Trainer;
+  trainer = new Trainer();
 }

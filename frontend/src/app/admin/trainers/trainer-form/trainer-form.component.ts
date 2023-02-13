@@ -1,5 +1,7 @@
-import { TrainerService } from './../trainer.service';
 import { Component, OnInit } from '@angular/core';
+import {  Router } from '@angular/router';
+
+import { TrainerService } from './../trainer.service';
 import { Trainer } from 'src/app/entities/Trainer';
 
 @Component({
@@ -12,7 +14,10 @@ export class TrainerFormComponent implements OnInit {
 
  trainer: Trainer = new Trainer();
 
-  constructor(private trainerService: TrainerService) { }
+  constructor(
+    private trainerService: TrainerService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
   }
@@ -25,7 +30,7 @@ insert(){
   console.log(this.trainer);
   this.trainerService.insert(this.trainer).subscribe((data) => {
     console.log(data);
-    this.trainer = new Trainer();
+    this.router.navigate(['/admin/trainers/list']);
   })
 }
 

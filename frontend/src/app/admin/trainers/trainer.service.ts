@@ -34,4 +34,12 @@ export class TrainerService {
     return this.http.post<any>(AppConstants.backendServer + 'trainers', trainer);
   }
 
+  findById(id: any): Observable<any> {
+    return this.http.get<any>(AppConstants.backendServer + 'trainers/' + id);
+  }
+  
+  update(trainer: Trainer) : Observable<any> {
+    return this.http.put<any>(AppConstants.backendServer + 'trainers/' + trainer.id, trainer);
+  }
+
 }

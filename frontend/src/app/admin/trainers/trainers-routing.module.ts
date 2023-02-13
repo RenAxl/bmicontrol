@@ -9,7 +9,7 @@ const routes: Routes = [
     component: TrainerListComponent,
   },
   {
-    path: ':create',
+    path: 'create',
     component: TrainerFormComponent,
   },
   {

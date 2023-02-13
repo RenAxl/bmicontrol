@@ -18,6 +18,8 @@ export class TrainerListComponent implements OnInit {
 
   totalElements: number = 0;
 
+  filterName: string = '';
+
   @ViewChild('trainerTable') grid!: Table;
 
   constructor(private trainerService: TrainerService) {}
@@ -27,8 +29,7 @@ export class TrainerListComponent implements OnInit {
   list(page: number = 0): void {
     this.pagination.page = page;
 
-    this.trainerService.list(this.pagination).subscribe((data) => {
-      console.log(data.content);
+    this.trainerService.list(this.pagination, this.filterName).subscribe((data) => {
       this.trainers = data.content;
       this.totalElements = data.totalElements
     });
@@ -37,5 +38,11 @@ export class TrainerListComponent implements OnInit {
   changePage(event: LazyLoadEvent) {
     const page = event!.first! / event!.rows!; 
     this.list(page);
+  }
+
+  searchTrainer(name: string){
+    console.log("Evento emitido no componente pai: " + name);
+    this.filterName = name;
+    this.list();
   }
 }

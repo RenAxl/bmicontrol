@@ -17,9 +17,10 @@ export class TrainerPagination {
 export class TrainerService {
   constructor(private http: HttpClient) {}
 
-  list(pagination: TrainerPagination): Observable<any> {
+  list(pagination: TrainerPagination, filterName: string): Observable<any> {
 
     let params = new HttpParams()
+      .set('name', filterName)
       .set('page', pagination.page)
       .set('LinesPerPage', pagination.linesPerPage)
       .set('direction', String(pagination.direction))

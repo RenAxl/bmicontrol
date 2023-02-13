@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {  Router } from '@angular/router';
 
+import { MessageService } from 'primeng/api';
+
 import { TrainerService } from './../trainer.service';
 import { Trainer } from 'src/app/entities/Trainer';
 
@@ -16,7 +18,8 @@ export class TrainerFormComponent implements OnInit {
 
   constructor(
     private trainerService: TrainerService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService,
     ) { }
 
   ngOnInit(): void {
@@ -29,8 +32,8 @@ export class TrainerFormComponent implements OnInit {
 insert(){
   console.log(this.trainer);
   this.trainerService.insert(this.trainer).subscribe((data) => {
-    console.log(data);
     this.router.navigate(['/admin/trainers/list']);
+    this.messageService.add({ severity: 'success', detail: 'Instrutor cadastrado com sucesso!' });
   })
 }
 

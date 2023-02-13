@@ -3,6 +3,9 @@ import { CommonModule, registerLocaleData } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import localePt from '@angular/common/locales/pt';
 
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+
 import { NavbarComponent } from './navbar/navbar.component';
 
 registerLocaleData(localePt, 'pt-BR');
@@ -11,11 +14,17 @@ registerLocaleData(localePt, 'pt-BR');
   declarations: [NavbarComponent],
   imports: [
     CommonModule, 
-    RouterModule
+    RouterModule,
+
+    ToastModule,
   ],
-  exports: [NavbarComponent],
+  exports: [
+    NavbarComponent,
+    ToastModule,
+  ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },
+    MessageService
   ]
 })
 export class CoreModule {}

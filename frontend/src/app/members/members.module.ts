@@ -1,3 +1,4 @@
+import { TrainersModule } from './../admin/trainers/trainers.module';
 import { MemberService } from './member.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

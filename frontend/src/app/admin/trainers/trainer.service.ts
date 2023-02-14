@@ -7,7 +7,7 @@ import { Trainer } from 'src/app/entities/Trainer';
 
 export class TrainerPagination {
   page = 0;
-  linesPerPage = 3;
+  linesPerPage: number = 3;
   direction?: string = 'ASC';
   orderBy?: string = 'name';
 }
@@ -17,13 +17,13 @@ export class TrainerPagination {
 })
 export class TrainerService {
   constructor(private http: HttpClient) {}
-
+  
   list(pagination: TrainerPagination, filterName: string): Observable<any> {
 
     let params = new HttpParams()
       .set('name', filterName)
       .set('page', pagination.page)
-      .set('LinesPerPage', pagination.linesPerPage)
+      .set('linesPerPage', String(pagination.linesPerPage))
       .set('direction', String(pagination.direction))
       .set('orderBy', String(pagination.orderBy));
 
@@ -45,6 +45,4 @@ export class TrainerService {
   delete(id: Number): Observable<any> {
     return this.http.delete(AppConstants.backendServer + 'trainers/' + id);
   }
-
-
 }

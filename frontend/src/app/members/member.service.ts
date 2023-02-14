@@ -23,7 +23,7 @@ export class MemberService {
     let params = new HttpParams()
     .set('name', filterName)
     .set('page', pagination.page)
-    .set('LinesPerPage', pagination.linesPerPage)
+    .set('linesPerPage', pagination.linesPerPage)
     .set('direction', String(pagination.direction))
     .set('orderBy', String(pagination.orderBy));
 
@@ -31,10 +31,8 @@ export class MemberService {
       .get<any>(AppConstants.backendServer + 'members', { params });
   }
 
-  /*
   insert(member: Member) : Observable<any> {
-    return this.http.post<any>(AppConstants.backendServer, member);
+    return this.http.post<any>(AppConstants.backendServer + 'members', member);
   }
-*/
 }
 

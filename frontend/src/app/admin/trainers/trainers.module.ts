@@ -34,6 +34,6 @@ import { TrainerService } from './trainer.service';
     TrainersRoutingModule,
     InputMaskModule,
   ],
-  providers: [TrainerService]
+  providers: [TrainerService],
 })
 export class TrainersModule { }

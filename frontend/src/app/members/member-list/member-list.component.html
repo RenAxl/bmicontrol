@@ -39,32 +39,32 @@
             <tr>
               <td>
                 <!--a classe "p-column-title" é do PrimeNG-->
-                <span class="p-column-title">Aluno</span>
+                <span class="p-column-title">Aluno:</span>
                 {{ member.name }}
               </td>
 
               <td>
-                <span class="p-column-title">Instrutor</span>
+                <span class="p-column-title">Instrutor:</span>
                 {{ member.trainer.name }}
               </td>
 
               <td>
-                <span class="p-column-title">Altura</span>
+                <span class="p-column-title">Altura:</span>
                 {{ member.height | number : "1.2-2" }}
               </td>
 
               <td>
-                <span class="p-column-title">Peso</span>
+                <span class="p-column-title">Peso:</span>
                 {{ member.weight | number : "1.2-2" }}
               </td>
 
               <td>
-                <span class="p-column-title">IMC</span>
+                <span class="p-column-title">IMC:</span>
                 {{ member.bmi | number : "1.2-2" }}
               </td>
 
               <td>
-                <span class="p-column-title">Classificação</span>
+                <span class="p-column-title">Classificação:</span>
                 <div *ngIf="member.rank === 'MAGREZA'">
                   <span [style.color]="'DarkTurquoise'">{{ member.rank }}</span>
                 </div>

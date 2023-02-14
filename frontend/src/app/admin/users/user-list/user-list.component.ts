@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
+import { LazyLoadEvent } from 'primeng/api';
+import { Role } from 'src/app/entities/Role';
+
+import { User } from 'src/app/entities/User';
+import { UserPagination, UserService } from '../user.service';
+
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -7,32 +13,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserListComponent implements OnInit {
 
-  users = [
-    {
-      name: 'Clark Anderson',
-      email: 'clark@email.com',
-      role: 'ADMIN',  
-    },
-    {
-      name: 'Velma Pamela',
-      email: 'velma@email.com',
-      role: 'FUNCTIONARY',  
-    },
-    {
-      name: 'Lucia Paiva',
-      email: 'lucia@email.com',
-      role: 'ADMIN',  
-    },
-    {
-      name: 'Ronaldo Marques',
-      email: 'ronaldo@email.com',
-      role: 'FUNCTIONARY',  
-    },
-  ]
+  users: User[] = [];
 
-  constructor() { }
+  roles: Role[] = [];
+
+  pagination = new UserPagination();
+
+  totalElements: number = 0;
+
+  filterName: string = '';
+
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+  }
+
+  list(page: number = 0): void {
+    this.pagination.page = page;
+
+    this.userService.list(this.pagination, this.filterName).subscribe((data)=> {
+      this.users = data.content;
+      this.totalElements = data.totalElements
+      console.log(this.users)
+    });
+  }
+
+  changePage(event: LazyLoadEvent){
+    const page = event!.first! / event!.rows!; // Operação para descobrir página atual
+    this.list(page);
+  }
+
+  searchUser(name: string){
+    this.filterName = name;
+    this.list();
   }
 
 }

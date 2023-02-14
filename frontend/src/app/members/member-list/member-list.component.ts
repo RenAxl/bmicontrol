@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { LazyLoadEvent } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
-import { Member } from 'src/app/entities/Member';
 
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { Member } from 'src/app/entities/Member';
 import { MemberPagination, MemberService } from '../member.service';
 
 @Component({
@@ -23,7 +24,12 @@ export class MemberListComponent implements OnInit {
 
   @ViewChild('memberTable') grid!: Table;
 
-  constructor(private memberService: MemberService) {}
+  constructor(
+    private memberService: MemberService,
+    private messageService: MessageService,
+    private errorHandler: ErrorHandlerService,
+    private confirmationService: ConfirmationService,
+    ) {}
 
   ngOnInit(): void {
   }
@@ -46,5 +52,18 @@ export class MemberListComponent implements OnInit {
   changePage(event: LazyLoadEvent){
     const page = event!.first! / event!.rows!; // Operação para descobrir página atual
     this.list(page);
+  }
+
+  delete(member: any) {
+    this.confirmationService.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => {
+        this.memberService.delete(member.id).subscribe(() => {
+          this.grid.reset();
+          this.messageService.add({ severity: 'success', detail: 'Aluno excluído com sucesso!' })
+        }, error => this.errorHandler.handle(error));
+      }
+    });
+
   }
 }

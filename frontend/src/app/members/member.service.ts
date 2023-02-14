@@ -43,6 +43,9 @@ export class MemberService {
     return this.http.put<any>(AppConstants.backendServer + 'members/' + member.id, member);
   }
 
+  delete(id: Number): Observable<any> {
+    return this.http.delete(AppConstants.backendServer + 'members/' + id);
+  }
 
 }
 

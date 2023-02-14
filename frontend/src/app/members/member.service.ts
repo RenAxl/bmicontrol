@@ -34,5 +34,15 @@ export class MemberService {
   insert(member: Member) : Observable<any> {
     return this.http.post<any>(AppConstants.backendServer + 'members', member);
   }
+
+  findById(id: any): Observable<any> {
+    return this.http.get<any>(AppConstants.backendServer + 'members/' + id);
+  }
+  
+  update(member: Member) : Observable<any> {
+    return this.http.put<any>(AppConstants.backendServer + 'members/' + member.id, member);
+  }
+
+
 }
 

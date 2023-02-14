@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { MessageService } from 'primeng/api';
 
@@ -26,15 +26,28 @@ export class MemberFormComponent implements OnInit {
     private trainerService: TrainerService,
     private messageService: MessageService,
     private router: Router,
+    private route: ActivatedRoute,
     private errorHandler: ErrorHandlerService
   ) {}
 
   ngOnInit(): void {
     this.listTrainers();
+
+    const id = this.route.snapshot.paramMap.get('memberId');
+    
+    if(id !=null){
+      this.memberService.findById(id).subscribe(data => {
+        this.member = data;
+      })
+    }
   }
 
   save() {
-    this.insert();
+    if (this.member.id != null && this.member.id.toString().trim() != null) { 
+      this.update();
+    }else{
+      this.insert();
+    }
   }
 
   listTrainers() {
@@ -58,6 +71,15 @@ export class MemberFormComponent implements OnInit {
       () => {
         this.router.navigate(['/members/list']);
         this.messageService.add({ severity: 'success', detail: 'Aluno cadastrado com sucesso!' });
+      },
+      (error) => this.errorHandler.handle(error));
+  }
+
+  update() {
+    this.memberService.update(this.member).subscribe(
+      () => {
+        this.router.navigate(['/members/list']);
+        this.messageService.add({ severity: 'success', detail: 'Aluno editado com sucesso!' });
       },
       (error) => this.errorHandler.handle(error));
   }

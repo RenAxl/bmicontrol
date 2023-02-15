@@ -9,7 +9,7 @@ const routes: Routes = [
     component: UserListComponent,
   },
   {
-    path: ':create',
+    path: 'create',
     component: UserFormComponent,
   },
   {

@@ -1,18 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { LazyLoadEvent } from 'primeng/api';
+import {
+  ConfirmationService,
+  LazyLoadEvent,
+  MessageService,
+} from 'primeng/api';
+import { Table } from 'primeng/table';
+
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { Role } from 'src/app/entities/Role';
-
 import { User } from 'src/app/entities/User';
 import { UserPagination, UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  styleUrls: ['./user-list.component.css'],
 })
 export class UserListComponent implements OnInit {
-
   users: User[] = [];
 
   roles: Role[] = [];
@@ -23,28 +28,53 @@ export class UserListComponent implements OnInit {
 
   filterName: string = '';
 
-  constructor(private userService: UserService) { }
+  @ViewChild('userTable') grid!: Table;
 
-  ngOnInit(): void {
-  }
+  constructor(
+    private userService: UserService,
+    private messageService: MessageService,
+    private errorHandler: ErrorHandlerService,
+    private confirmationService: ConfirmationService
+  ) {}
+
+  ngOnInit(): void {}
 
   list(page: number = 0): void {
     this.pagination.page = page;
 
-    this.userService.list(this.pagination, this.filterName).subscribe((data)=> {
-      this.users = data.content;
-      this.totalElements = data.totalElements
-    });
+    this.userService
+      .list(this.pagination, this.filterName)
+      .subscribe((data) => {
+        this.users = data.content;
+        this.totalElements = data.totalElements;
+      });
   }
 
-  changePage(event: LazyLoadEvent){
+  changePage(event: LazyLoadEvent) {
     const page = event!.first! / event!.rows!; // Operação para descobrir página atual
     this.list(page);
   }
 
-  searchUser(name: string){
+  searchUser(name: string) {
     this.filterName = name;
     this.list();
   }
 
+  delete(user: any) {
+    this.confirmationService.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => {
+        this.userService.delete(user.id).subscribe(
+          () => {
+            this.grid.reset();
+            this.messageService.add({
+              severity: 'success',
+              detail: 'Usuário excluído com sucesso!',
+            });
+          },
+          (error) => this.errorHandler.handle(error)
+        );
+      },
+    });
+  }
 }

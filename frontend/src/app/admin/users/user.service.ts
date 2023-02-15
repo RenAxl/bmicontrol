@@ -48,4 +48,8 @@ export class UserService {
     return this.http.put<any>(AppConstants.backendServer + 'users/' + user.id, user);
   }
 
+  delete(id: Number): Observable<any> {
+    return this.http.delete(AppConstants.backendServer + 'users/' + id);
+  }
+
 }

@@ -7,6 +7,7 @@ import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
+import {MultiSelectModule} from 'primeng/multiselect';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UserFormComponent } from './user-form/user-form.component';
@@ -29,6 +30,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
     TooltipModule,
     InputTextModule,
     DropdownModule,
+    MultiSelectModule,
     UsersRoutingModule,
   ]
 })

@@ -1,6 +1,6 @@
 <div class="user-form-container">
   <div class="user-card">
-    <form #userForm="ngForm" (ngSubmit)="save(userForm)">
+    <form #userForm="ngForm" (ngSubmit)="save()">
       <div class="col-12">
         <h1>Dados do Usuário</h1>
       </div>
@@ -33,7 +33,22 @@
           >
           </app-message>
 
-          <div class="mt-3">
+          <div class="mt-3 mb-3">
+            <p-multiSelect
+              [options]="roles"
+              optionLabel="authority"
+              optionValue="id"
+              placeholder="Selecione"
+              name="role"
+              [(ngModel)]="selectedRole"
+              #role
+              [required]="true"
+              styleClass="form-control"
+            ></p-multiSelect>
+          </div>
+        </div>
+        <div class="user-form-inputs-right col-lg-6 mb-8">
+          <div>
             <input
               pInputText
               placeholder="E-mail"
@@ -51,20 +66,25 @@
             error="required"
             text="Informe o E-mail do usuário"
           ></app-message>
-        </div>
 
-        <div class="user-form-inputs-right col-lg-6 mb-8">
-          <div>
-            <p-dropdown
-              [options]="roles"
-              placeholder="Selecione"
-              name="role"
-              [(ngModel)]="user.roles.id"
-              #role
+          <div class="mt-3">
+            <input
+              pInputText
+              placeholder="Senha"
+              type="password"
+              name="password"
+              [(ngModel)]="user.password"
+              #password="ngModel"
               [required]="true"
-              styleClass="form-control"
-            ></p-dropdown>
+              class="form-control"
+            />
           </div>
+
+          <app-message
+            [control]="email"
+            error="required"
+            text="Informe a senha do usuário"
+          ></app-message>
         </div>
       </div>
 

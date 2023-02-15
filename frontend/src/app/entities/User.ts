@@ -5,6 +5,6 @@ export class User {
     name?: string;
     email?: string;
     password?: string;
-    roles = new Role();
-  }
+    roles: Role[] = [];
+}
   

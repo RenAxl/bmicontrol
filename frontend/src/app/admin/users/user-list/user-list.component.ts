@@ -34,7 +34,6 @@ export class UserListComponent implements OnInit {
     this.userService.list(this.pagination, this.filterName).subscribe((data)=> {
       this.users = data.content;
       this.totalElements = data.totalElements
-      console.log(this.users)
     });
   }
 

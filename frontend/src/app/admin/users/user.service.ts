@@ -3,6 +3,8 @@ import { HttpClient, HttpParams, } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { AppConstants } from 'src/app/app-constants';
+import { User } from 'src/app/entities/User';
+
 
 export class UserPagination {
   page = 0;
@@ -31,4 +33,12 @@ export class UserService {
     return this.http
       .get<any>(AppConstants.backendServer + 'users', { params });
   }
+
+  insert(user: User) : Observable<any> {
+   console.log(user);
+    return this.http.post<any>(AppConstants.backendServer + 'users', user);
+  }
+
+
+
 }

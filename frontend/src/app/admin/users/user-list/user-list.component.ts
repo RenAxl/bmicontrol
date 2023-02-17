@@ -1,10 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import {
-  ConfirmationService,
-  LazyLoadEvent,
-  MessageService,
-} from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';

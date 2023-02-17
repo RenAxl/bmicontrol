@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
-
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 import { ComponentsModule } from 'src/app/components/components.module';
@@ -25,8 +24,11 @@ import { LoginService } from './login.service';
     ButtonModule,
     ComponentsModule,
     InputTextModule,
+
     LoginRoutingModule
   ],
-  providers: [LoginService]
+  providers: [
+    LoginService,    
+  ]
 })
 export class LoginModule { }

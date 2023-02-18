@@ -44,11 +44,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		}
 		
 		http.authorizeRequests()
-		.antMatchers(PUBLIC).permitAll();
-		//.antMatchers(HttpMethod.GET, "/members/**", "/trainers/**").permitAll()
-		//.antMatchers(HttpMethod.DELETE, "/members/**", "/trainers/**").hasRole("ADMIN")
-		//.antMatchers("/users/**").hasRole("ADMIN")
-		//.anyRequest().authenticated();
+		.antMatchers(PUBLIC).permitAll()
+		.antMatchers(HttpMethod.GET, "/members/**", "/trainers/**").permitAll()
+		.antMatchers(HttpMethod.DELETE, "/members/**", "/trainers/**").hasRole("ADMIN")
+		.antMatchers("/users/**").hasRole("ADMIN")
+		.anyRequest().authenticated();
 		
 		http.cors().configurationSource(corsConfigurationSource());
 	}

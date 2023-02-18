@@ -27,7 +27,6 @@ import { ComponentsModule } from '../components/components.module';
   imports: [
     CommonModule,
     FormsModule,
-    HttpClientModule,
 
     ButtonModule,
     InputTextModule,

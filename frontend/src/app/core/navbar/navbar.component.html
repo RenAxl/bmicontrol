@@ -4,11 +4,7 @@
       <h4>RT Controle de IMC</h4>
     </a>
 
-    <button
-      class="navbar-toggler"
-      type="button"
-      (click)="showMenu = !showMenu"
-    >
+    <button class="navbar-toggler" type="button" (click)="showMenu = !showMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -27,8 +23,10 @@
     </div>
 
     <div class="nav-login-logout">
-      <span>{{ userLoggedIn }}</span>
-      <a routerLink="auth/login"> // LOGOUT </a>
+      <span >{{ userLoggedIn }}</span>
+      <a routerLink="auth/login">
+        <span class="logout"> LOGOUT </span>
+      </a>
     </div>
   </div>
 </nav>

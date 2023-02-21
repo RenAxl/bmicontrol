@@ -54,6 +54,10 @@
     font-weight: bold;
   }
 
+  .logout {
+    margin-left: 20px;
+  }
+
   @media (min-width: 768px) {
     .nav-login-logout {
       display: unset;

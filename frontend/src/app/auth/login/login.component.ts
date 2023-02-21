@@ -6,7 +6,7 @@ import { MessageService } from 'primeng/api';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 import { User } from 'src/app/entities/User';
-import { LoginService } from './login.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,10 +16,9 @@ import { LoginService } from './login.service';
 export class LoginComponent implements OnInit {
   user: User = new User();
 
-  token: string = '';
 
   constructor(
-    private loginService: LoginService,
+    private authService: AuthService,
     private messageService: MessageService,
     private router: Router,
     private errorHandler: ErrorHandlerService
@@ -32,17 +31,16 @@ export class LoginComponent implements OnInit {
   }
 
   requestToken() {
-    this.loginService.requestToken(this.user).subscribe(
-      (data) => {
-        console.log(data);
-        this.token = data.access_token;
-        localStorage.setItem('token', this.token); // localStorage é um objeto próprio do Angular.
+    this.authService.requestToken(this.user).subscribe(
+      () => {
         this.messageService.add({
           severity: 'success',
           detail: 'Usuário autenticado no sucesso!',
         });
         this.router.navigate(['/members/list']);
-      }, () => this.errorHandler.handle("Erro ao tentar efetuar a autenticação do usuário! Favor conferir o usuário e a senha. ")
+      },
+      () =>
+        this.errorHandler.handle('Erro ao tentar efetuar a autenticação do usuário! Favor conferir o usuário e a senha. ')
     );
   }
 }

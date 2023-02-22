@@ -9,11 +9,15 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { ErrorHandlerService } from './error-handler.service';
+import { PageNotFoundComponent } from './page-not-found.component';
 
 registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
-  declarations: [NavbarComponent],
+  declarations: [
+    NavbarComponent,
+    PageNotFoundComponent,
+  ],
   imports: [
     CommonModule, 
     RouterModule,

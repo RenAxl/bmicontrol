@@ -5,6 +5,9 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { AppConstants } from 'src/app/app-constants';
 import { User } from 'src/app/entities/User';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
+import { ErrorHandlerService } from '../core/error-handler.service';
 
 export type RoleToken = 'ROLE_FUNCTIONARY' | 'ROLE_ADMIN';
 
@@ -23,13 +26,19 @@ export class AuthService {
   isUserAuthenticated = true;
 
   static emitiLogin = new EventEmitter<string>();
+  static emitiLogout = new EventEmitter<string>();
 
-
-  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
+  constructor(
+    private http: HttpClient,
+    private jwtHelper: JwtHelperService,
+    private messageService: MessageService,
+    private router: Router,
+    private errorHandler: ErrorHandlerService
+  ) {
     this.loadingToken();
   }
 
-  requestToken(user: User): Observable<any> {
+  requestToken(user: User): Observable<void> {
     const headers = new HttpHeaders()
       .append('Content-Type', 'application/x-www-form-urlencoded')
       .append('Authorization', 'Basic Ym1pY29udHJvbDpibWljb250cm9sMTIz');
@@ -42,9 +51,18 @@ export class AuthService {
       { headers }
     );
 
-    response.subscribe((data) => {
-      this.saveToken(data.access_token);
-    });
+    response.subscribe(
+      (data) => {
+        this.saveToken(data.access_token);
+        this.messageService.add({
+          severity: 'success',
+          detail: 'Usuário autenticado no sucesso!',
+        });
+        this.router.navigate(['/members/list']);
+      },
+      () =>
+        this.errorHandler.handle('Erro ao tentar efetuar a autenticação do usuário! Favor conferir o usuário e a senha. ')
+    );
 
     return response;
   }
@@ -54,7 +72,25 @@ export class AuthService {
     this.decodedToken = this.jwtHelper.decodeToken(token);
     this.isUserAuthenticated = true;
     AuthService.emitiLogin.emit(this.decodedToken?.user_name);
+  }
 
+  loadingToken() {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      this.saveToken(token);
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.decodedToken = '';
+    AuthService.emitiLogout.emit(this.decodedToken?.user_name);
+  }
+
+  isTokenInvalid() {
+    const token = localStorage.getItem('token');
+    return !token || this.jwtHelper.isTokenExpired(token);
   }
 
   isAuthenticated(role: string) {
@@ -69,13 +105,5 @@ export class AuthService {
     }
 
     return false;
-  }
-
-  loadingToken() {
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      this.saveToken(token);
-    }
   }
 }

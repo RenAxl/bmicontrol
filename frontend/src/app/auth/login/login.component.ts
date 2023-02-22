@@ -19,9 +19,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private messageService: MessageService,
-    private router: Router,
-    private errorHandler: ErrorHandlerService
+   
   ) {}
 
   ngOnInit(): void {}
@@ -31,16 +29,6 @@ export class LoginComponent implements OnInit {
   }
 
   requestToken() {
-    this.authService.requestToken(this.user).subscribe(
-      () => {
-        this.messageService.add({
-          severity: 'success',
-          detail: 'Usuário autenticado no sucesso!',
-        });
-        this.router.navigate(['/members/list']);
-      },
-      () =>
-        this.errorHandler.handle('Erro ao tentar efetuar a autenticação do usuário! Favor conferir o usuário e a senha. ')
-    );
+    this.authService.requestToken(this.user);
   }
 }

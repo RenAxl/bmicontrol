@@ -25,7 +25,7 @@
     <div class="nav-login-logout">
       <span >{{ userLoggedIn }}</span>
       <a routerLink="auth/login">
-        <span class="logout"> LOGOUT </span>
+        <span class="logout" (click)="logout()"> LOGOUT </span>
       </a>
     </div>
   </div>

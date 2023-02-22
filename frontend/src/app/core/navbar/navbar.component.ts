@@ -11,29 +11,32 @@ export class NavbarComponent implements OnInit {
   /*Abaixo, o atributo  userLoggedIn precisa ser inicializado desta maneira, 
   porque se ela for inicializado com uma string vazia, ao realizar o refresh,
    o nome do usuário desaparece da navbar, isto porque ele pega a string vazia*/
-  userLoggedIn: string = this.auth.decodedToken?.user_name;
+  userLoggedIn: string = this.authService.decodedToken?.user_name;
 
   showMenu: boolean = false;
 
-  constructor(private auth: AuthService) {
+  constructor(private authService: AuthService) {
     
     /* Somente através do "EventEmitter", usado abaixo, que é possivel a navbar mostrar 
     o nome do usuário após logar sem precisar de atualizar toda a página.*/
 
     AuthService.emitiLogin.subscribe((data) => {
       this.userLoggedIn = data;
-      console.log('Emitindo:' + this.userLoggedIn);
     });
 
     AuthService.emitiLogout.subscribe((data) => {
       this.userLoggedIn = data;
-      console.log('Emitindo:' + this.userLoggedIn);
     });
   }
 
   ngOnInit(): void {}
 
   logout(){
-    this.auth.logout();
+    this.authService.logout();
   }
+
+  haveRole(role: string){
+    return this.authService.haveRole(role);
+  }
+
 }

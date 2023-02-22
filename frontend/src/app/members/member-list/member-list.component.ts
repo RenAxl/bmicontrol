@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/auth/auth.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
@@ -29,6 +30,7 @@ export class MemberListComponent implements OnInit {
     private messageService: MessageService,
     private errorHandler: ErrorHandlerService,
     private confirmationService: ConfirmationService,
+    private authService: AuthService
     ) {}
 
   ngOnInit(): void {
@@ -64,6 +66,10 @@ export class MemberListComponent implements OnInit {
         }, error => this.errorHandler.handle(error));
       }
     });
-
   }
+
+  notHaveRole(role: string){
+    return !this.authService.haveRole(role);
+  }
+
 }

@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   { 
     path: '', 
-    redirectTo: 'members/list', 
+    redirectTo: 'auth/login', 
     pathMatch: 'full'
   },
   {

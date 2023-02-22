@@ -9,7 +9,10 @@
         NOVO ALUNO
       </button>
     </a>
-    <app-filter text="Digite o nome do aluno" (search)="searchMember($event)"></app-filter>
+    <app-filter
+      text="Digite o nome do aluno"
+      (search)="searchMember($event)"
+    ></app-filter>
   </div>
   <div class="member-card">
     <div class="grid">
@@ -96,6 +99,7 @@
                   pTooltip="Excluir"
                   tooltipPosition="top"
                   (click)="delete(member)"
+                  [disabled]="notHaveRole('ROLE_ADMIN')"
                 ></button>
               </td>
             </tr>

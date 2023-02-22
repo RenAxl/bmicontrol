@@ -93,13 +93,13 @@ export class AuthService {
     return !token || this.jwtHelper.isTokenExpired(token);
   }
 
-  isAuthenticated(role: string) {
+  haveRole(role: string) {
     return this.decodedToken && this.decodedToken.authorities.includes(role);
   }
 
   hasAnyRoles(roles: any) {
     for (const role of roles) {
-      if (this.isAuthenticated(role)) {
+      if (this.haveRole(role)) {
         return true;
       }
     }

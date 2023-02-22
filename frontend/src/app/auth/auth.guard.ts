@@ -29,7 +29,8 @@ export class AuthGuard implements CanActivate {
       /* Somente com este código abaixo eu consegui fazer o guarda de rotas funcionar.
       Pois não estava redirecionando após logar e permanecia sem acessar a pagina mesmo com o token 
       e suas permissões já no local storage. Porém quando efetuava refresh no navegador, era possível
-      acessar*/
+      acessar. Pelo que entendi, quando eu logava a variavel "decodedToken" do serviço "AuthService" 
+      não estava sendo atualizada mesmo com o token já no local storage*/
       if(!this.authService.hasAnyRoles(next.data['roles'])){
         const token: any = localStorage.getItem('token');
         this.authService.decodedToken = this.jwtHelper.decodeToken(token);

@@ -44,18 +44,21 @@
     margin-left: 20px;
     color: #fff
   }
-  
+
+
   .nav-login-logout a {
-    color: #fff;
+    font-style: normal;
+    color: rgba(255, 255, 255, 0.5);
     text-decoration: none;
   }
 
   .nav-login-logout a.active {
     font-weight: bold;
+    color: #fff;
   }
 
-  .logout {
-    margin-left: 20px;
+  .nav-login-logout a:hover {
+    color: #fff;
   }
 
   @media (min-width: 768px) {

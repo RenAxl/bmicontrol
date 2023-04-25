@@ -11,30 +11,37 @@
     <div class="navbar-collapse" [hidden]="!showMenu">
       <ul class="navbar-nav offset-md-2 main-menu">
         <li>
-          <a 
-          routerLink="/members/list" 
-          routerLinkActive="active"
-          *ngIf="haveRole('ROLE_FUNCTIONARY' || 'ROLE_ADMIN')"
-          >ALUNOS</a>
+          <a
+            routerLink="/members/list"
+            routerLinkActive="active"
+            *ngIf="haveRole('ROLE_FUNCTIONARY' || 'ROLE_ADMIN')"
+          >
+            <fa-icon icon="swimmer" class="mr-2"></fa-icon>
+            ALUNOS</a
+          >
         </li>
         <li>
-          <a routerLink="auth/login" routerLinkActive="active">LOGIN</a>
-        </li>
-        <li>
-          <a 
-          routerLink="/admin/users/list" 
-          routerLinkActive="active"
-          *ngIf="haveRole('ROLE_ADMIN')"
-          >ADMIN</a>
+          <a
+            routerLink="/admin/users/list"
+            routerLinkActive="active"
+            *ngIf="haveRole('ROLE_ADMIN')"
+          >
+            <fa-icon icon="tools" class="mr-2"></fa-icon>
+            ADMIN</a
+          >
         </li>
       </ul>
     </div>
 
     <div class="nav-login-logout">
-      <span >{{ userLoggedIn }}</span>
-      <a routerLink="auth/login">
-        <span class="logout" (click)="logout()"> LOGOUT </span>
-      </a>
+      <fa-icon icon="user" class="mr-2"></fa-icon>
+      <span
+        >{{ userLoggedIn }}
+        <a *ngIf="userLoggedIn" href="javascript:;" (click)="logout()">
+          - LOGOUT
+        </a>
+        <a *ngIf="!userLoggedIn" routerLink="auth/login"> LOGIN </a>
+      </span>
     </div>
   </div>
 </nav>

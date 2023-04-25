@@ -29,15 +29,8 @@ export class AuthService {
 
     const body = `username=${user.email}&password=${user.password}&grant_type=password`;
 
-    const response: Observable<any> = this.http.post<any>(AppConstants.oauthTokenUrl, body, { headers });
+    return this.http.post<any>(AppConstants.oauthTokenUrl, body, { headers });
 
-    response.subscribe(
-      (data) => {
-        this.saveToken(data.access_token);
-      }
-    );
-
-    return response;
   }
 
   saveToken(token: string){

@@ -10,6 +10,7 @@ import { FilterComponent } from './filter/filter.component';
 import { MessageComponent } from './message/message.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { IconsModule } from './icons/icons.module';
 
 
 
@@ -26,7 +27,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 
     RouterModule,
     ButtonModule,
-    InputTextModule
+    InputTextModule,
+    IconsModule
   ],
   exports:[
     FilterComponent,

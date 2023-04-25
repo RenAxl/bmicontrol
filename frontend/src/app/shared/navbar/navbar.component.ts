@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
@@ -15,7 +17,10 @@ export class NavbarComponent implements OnInit {
 
   showMenu: boolean = false;
 
-  constructor(private authService: AuthService) {
+  constructor(
+    private authService: AuthService,
+    private router: Router
+    ) {
     
     /* Somente através do "EventEmitter", usado abaixo, que é possivel a navbar mostrar 
     o nome do usuário após logar sem precisar de atualizar toda a página.*/
@@ -33,6 +38,7 @@ export class NavbarComponent implements OnInit {
 
   logout(){
     this.authService.logout();
+    this.router.navigate(['/auth/login']);
   }
 
   haveRole(role: string){

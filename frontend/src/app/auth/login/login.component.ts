@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   save() {
     this.authService.requestToken(this.user).subscribe(
       (data) => {
-        console.log(data);
+        this.authService.saveToken(data.access_token);
         this.messageService.add({
           severity: 'success',
           detail: 'Usuário autenticado no sucesso!',

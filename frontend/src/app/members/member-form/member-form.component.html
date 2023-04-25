@@ -46,6 +46,24 @@
 
         <div class="mt-3">
           <p-inputNumber
+            placeholder="Idade"
+            [(ngModel)]="member.age"
+            name="age"
+            #age="ngModel"
+            [required]="true"
+            inputStyleClass="form-control "
+          >
+          </p-inputNumber>
+        </div>
+
+        <app-message
+          [control]="age"
+          error="required"
+          text="Informe a idade do aluno"
+        ></app-message>
+
+        <div class="mt-3">
+          <p-inputNumber
             mode="decimal"
             locale="pt-BR"
             [minFractionDigits]="2"

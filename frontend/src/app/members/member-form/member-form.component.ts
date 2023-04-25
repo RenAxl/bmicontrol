@@ -3,13 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { MessageService } from 'primeng/api';
 
-import {
-  TrainerPagination,
-  TrainerService,
-} from 'src/app/admin/trainers/trainer.service';
+import { TrainerService } from 'src/app/admin/trainers/trainer.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
-import { Member } from 'src/app/entities/Member';
 import { MemberService } from '../member.service';
+import { Member } from 'src/app/core/models/Member';
+import { Pagination } from 'src/app/core/models/Pagination';
 
 @Component({
   selector: 'app-member-form',
@@ -51,9 +49,9 @@ export class MemberFormComponent implements OnInit {
   }
 
   listTrainers() {
-    let pagination: TrainerPagination = new TrainerPagination();
+    let pagination: Pagination = new Pagination();
+    pagination.linesPerPage = 50;
     let trainerFilterName: string = '';
-    pagination.linesPerPage = 12;
     this.trainerService
       .list(pagination, trainerFilterName)
       .subscribe((data) => {

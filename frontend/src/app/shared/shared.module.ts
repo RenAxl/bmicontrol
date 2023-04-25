@@ -1,30 +1,38 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 
 import { FilterComponent } from './filter/filter.component';
 import { MessageComponent } from './message/message.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
 @NgModule({
   declarations: [
     FilterComponent,
-    MessageComponent
+    MessageComponent,
+    NavbarComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
 
+    RouterModule,
     ButtonModule,
     InputTextModule
   ],
   exports:[
     FilterComponent,
-    MessageComponent
+    MessageComponent,
+    NavbarComponent,
+    SidebarComponent
   ]
 })
-export class ComponentsModule { }
+export class SharedModule { }

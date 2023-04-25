@@ -76,7 +76,7 @@ public class TrainerService {
 	private void copyDtoToEntity(TrainerDTO trainerDto, Trainer entity) {
 		entity.setName(trainerDto.getName());
 		entity.setAge(trainerDto.getAge());
-		entity.setCpf(trainerDto.getCellPhone());
+		entity.setCpf(trainerDto.getCpf());
 		entity.setCellPhone(trainerDto.getCellPhone());
 	}
 

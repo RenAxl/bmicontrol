@@ -3,15 +3,9 @@ import { HttpClient, HttpParams, } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { AppConstants } from 'src/app/app-constants';
-import { User } from 'src/app/entities/User';
+import { User } from 'src/app/core/models/User';
+import { Pagination } from 'src/app/core/models/Pagination';
 
-
-export class UserPagination {
-  page = 0;
-  linesPerPage = 4;
-  direction?: string = "ASC";
-  orderBy?: string = "name";
-}
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +15,7 @@ export class UserService {
   constructor(
     private http: HttpClient) { }
 
-  list(pagination: UserPagination, filterName: string): Observable<any> {
+  list(pagination: Pagination, filterName: string): Observable<any> {
 
     let params = new HttpParams()
     .set('name', filterName)

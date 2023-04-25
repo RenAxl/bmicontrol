@@ -3,14 +3,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { AppConstants } from 'src/app/app-constants';
-import { Trainer } from 'src/app/entities/Trainer';
+import { Trainer } from 'src/app/core/models/Trainer';
+import { Pagination } from 'src/app/core/models/Pagination';
 
-export class TrainerPagination {
-  page = 0;
-  linesPerPage: number = 3;
-  direction?: string = 'ASC';
-  orderBy?: string = 'name';
-}
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +13,7 @@ export class TrainerPagination {
 export class TrainerService {
   constructor(private http: HttpClient) {}
   
-  list(pagination: TrainerPagination, filterName: string): Observable<any> {
+  list(pagination: Pagination, filterName: string): Observable<any> {
 
     let params = new HttpParams()
       .set('name', filterName)
@@ -31,6 +26,7 @@ export class TrainerService {
   }
 
   insert(trainer: Trainer) : Observable<any> {
+    console.log(trainer);
     return this.http.post<any>(AppConstants.backendServer + 'trainers', trainer);
   }
 

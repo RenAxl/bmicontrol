@@ -3,16 +3,17 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
     AdminComponent,
-    SidebarComponent
   ],
   imports: [
     CommonModule,
+
+    SharedModule,
     AdminRoutingModule
   ]
 })

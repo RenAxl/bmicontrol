@@ -1,6 +1,6 @@
 <div class="user-form-container">
   <div class="user-card">
-    <form #userForm="ngForm" (ngSubmit)="save()">
+    <form #userForm="ngForm" (ngSubmit)="save(userForm)">
       <div class="col-12">
         <h1>Dados do Usuário</h1>
       </div>
@@ -37,10 +37,9 @@
             <p-multiSelect
               [options]="roles"
               optionLabel="authority"
-              optionValue="id"
               placeholder="Selecione"
-              name="role"
-              [(ngModel)]="selectedRole"
+              name="roles"
+              [(ngModel)]="select"
               #role
               [required]="true"
               styleClass="form-control"

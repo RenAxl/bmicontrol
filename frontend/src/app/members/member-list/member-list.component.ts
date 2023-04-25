@@ -5,8 +5,9 @@ import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api'
 import { Table } from 'primeng/table';
 
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
-import { Member } from 'src/app/entities/Member';
-import { MemberPagination, MemberService } from '../member.service';
+import { MemberService } from '../member.service';
+import { Member } from 'src/app/core/models/Member';
+import { Pagination } from 'src/app/core/models/Pagination';
 
 @Component({
   selector: 'app-member-list',
@@ -15,7 +16,7 @@ import { MemberPagination, MemberService } from '../member.service';
 })
 export class MemberListComponent implements OnInit {
 
-  pagination = new MemberPagination();
+  pagination: Pagination = new Pagination();
 
   totalElements: number = 0;
 
@@ -31,7 +32,9 @@ export class MemberListComponent implements OnInit {
     private errorHandler: ErrorHandlerService,
     private confirmationService: ConfirmationService,
     private authService: AuthService
-    ) {}
+    ) {
+      this.pagination.linesPerPage = 4;
+    }
 
   ngOnInit(): void {
   }

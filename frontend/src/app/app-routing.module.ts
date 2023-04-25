@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { PageNotFoundComponent } from './core/page-not-found.component';
+import { NotAuthorizedComponent } from './core/not-authorized.component';
 
 const routes: Routes = [
   { 
@@ -11,16 +12,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_FUNCTIONARY', 'ROLE_ADMIN']}
   },
-  { 
-    path: '', 
-    redirectTo: 'auth/login', 
-    pathMatch: 'full'
-  },
-  {
-    path: 'auth',
-    loadChildren: () =>
-      import('../app/auth/auth.module').then((m) => m.AuthModule),
-  },
   {
     path: 'admin',
     loadChildren: () =>
@@ -28,6 +19,10 @@ const routes: Routes = [
       canActivate: [AuthGuard],
       data: { roles: ['ROLE_FUNCTIONARY', 'ROLE_ADMIN']}
   },
+  { 
+    path: 'not-authorization', 
+    component: NotAuthorizedComponent
+   },
   { 
     path: 'page-not-found', 
     component: PageNotFoundComponent 

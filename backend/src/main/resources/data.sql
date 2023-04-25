@@ -13,10 +13,10 @@ INSERT INTO tb_trainer (name, age, cpf, cell_phone) VALUES ('Alessandra Abreu Nu
 INSERT INTO tb_trainer (name, age, cpf, cell_phone) VALUES ('Lucas Vasconcelo', 38, '999.999.999-99', '31 9 9999-9999');
 INSERT INTO tb_trainer (name, age, cpf, cell_phone) VALUES ('Sabrina Magalhães Costa', 37, '999.999.999-99', '31 9 9999-9999');
 
-INSERT INTO tb_member (name, height, weight, bmi, rank, trainer_id) VALUES ('Amanda Costa Mezenga', 1.68, 50.0, 17.72, 'MAGREZA', 2);
-INSERT INTO tb_member (name, height, weight, bmi, rank, trainer_id) VALUES ('Joana Manuela Silva', 1.62, 65.0, 24.77, 'NORMAL', 4);
-INSERT INTO tb_member (name, height, weight, bmi, rank, trainer_id) VALUES ('Leonardo Roberto Costa', 1.77, 90.0, 28.73, 'SOBREPESO', 1);
-INSERT INTO tb_member (name, height, weight, bmi, rank, trainer_id) VALUES ('Kassio Marinho Santos', 1.82, 110.0, 33.21, 'OBESIDADE', 4);
-INSERT INTO tb_member (name, height, weight, bmi, rank, trainer_id) VALUES ('Roberto Augusto Abreu', 1.78, 140.0, 44.19, 'OBESIDADE GRAVE', 3);
+INSERT INTO tb_member (name, age, height, weight, bmi, rank, trainer_id) VALUES ('Amanda Costa Mezenga', 17, 1.68, 50.0, 17.72, 'MAGREZA', 2);
+INSERT INTO tb_member (name, age, height, weight, bmi, rank, trainer_id) VALUES ('Joana Manuela Silva', 48, 1.62, 65.0, 24.77, 'NORMAL', 4);
+INSERT INTO tb_member (name, age, height, weight, bmi, rank, trainer_id) VALUES ('Leonardo Roberto Costa', 56, 1.77, 90.0, 28.73, 'SOBREPESO', 1);
+INSERT INTO tb_member (name, age, height, weight, bmi, rank, trainer_id) VALUES ('Kassio Marinho Santos', 60, 1.82, 110.0, 33.21, 'OBESIDADE', 4);
+INSERT INTO tb_member (name, age, height, weight, bmi, rank, trainer_id) VALUES ('Roberto Augusto Abreu', 80, 1.78, 140.0, 44.19, 'OBESIDADE GRAVE', 3);
 
 

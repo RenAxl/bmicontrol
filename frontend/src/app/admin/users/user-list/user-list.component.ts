@@ -4,9 +4,10 @@ import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api'
 import { Table } from 'primeng/table';
 
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
-import { Role } from 'src/app/entities/Role';
-import { User } from 'src/app/entities/User';
-import { UserPagination, UserService } from '../user.service';
+import { UserService } from '../user.service';
+import { User } from 'src/app/core/models/User';
+import { Role } from 'src/app/core/models/Role';
+import { Pagination } from 'src/app/core/models/Pagination';
 
 @Component({
   selector: 'app-user-list',
@@ -18,7 +19,7 @@ export class UserListComponent implements OnInit {
 
   roles: Role[] = [];
 
-  pagination = new UserPagination();
+  pagination: Pagination = new Pagination();
 
   totalElements: number = 0;
 
@@ -31,7 +32,9 @@ export class UserListComponent implements OnInit {
     private messageService: MessageService,
     private errorHandler: ErrorHandlerService,
     private confirmationService: ConfirmationService
-  ) {}
+  ) {
+    this.pagination.linesPerPage = 1;
+  }
 
   ngOnInit(): void {}
 

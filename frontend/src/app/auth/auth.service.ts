@@ -3,19 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
-import { AppConstants } from 'src/app/app-constants';
-import { User } from 'src/app/entities/User';
-import { MessageService } from 'primeng/api';
-import { Router } from '@angular/router';
-import { ErrorHandlerService } from '../core/error-handler.service';
-
-export type RoleToken = 'ROLE_FUNCTIONARY' | 'ROLE_ADMIN';
-
-export class TokenData {
-  exp?: number;
-  user_name?: string;
-  authorities?: RoleToken[];
-}
+import { User } from '../core/models/User';
+import { AppConstants } from '../app-constants';
 
 @Injectable({
   providedIn: 'root',
@@ -23,54 +12,37 @@ export class TokenData {
 export class AuthService {
   decodedToken: any;
 
-  isUserAuthenticated = true;
-
   static emitiLogin = new EventEmitter<string>();
   static emitiLogout = new EventEmitter<string>();
 
   constructor(
     private http: HttpClient,
-    private jwtHelper: JwtHelperService,
-    private messageService: MessageService,
-    private router: Router,
-    private errorHandler: ErrorHandlerService
-  ) {
-    this.loadingToken();
-  }
+    private jwtHelper: JwtHelperService
+    ) {
+      this.loadingToken();
+    }
 
-  requestToken(user: User): Observable<void> {
+  requestToken(user: User): Observable<any> {
     const headers = new HttpHeaders()
       .append('Content-Type', 'application/x-www-form-urlencoded')
-      .append('Authorization', 'Basic Ym1pY29udHJvbDpibWljb250cm9sMTIz');
+      .append('Authorization','Basic Ym1pY29udHJvbDpibWljb250cm9sMTIz');
 
     const body = `username=${user.email}&password=${user.password}&grant_type=password`;
 
-    let response: Observable<any> = this.http.post<any>(
-      AppConstants.oauthTokenUrl,
-      body,
-      { headers }
-    );
+    const response: Observable<any> = this.http.post<any>(AppConstants.oauthTokenUrl, body, { headers });
 
     response.subscribe(
       (data) => {
         this.saveToken(data.access_token);
-        this.messageService.add({
-          severity: 'success',
-          detail: 'Usuário autenticado no sucesso!',
-        });
-        this.router.navigate(['/members/list']);
-      },
-      () =>
-        this.errorHandler.handle('Erro ao tentar efetuar a autenticação do usuário! Favor conferir o usuário e a senha. ')
+      }
     );
 
     return response;
   }
 
-  saveToken(token: string) {
-    localStorage.setItem('token', token); // localStorage é um objeto próprio do Angular.
+  saveToken(token: string){
+    localStorage.setItem('token', token);
     this.decodedToken = this.jwtHelper.decodeToken(token);
-    this.isUserAuthenticated = true;
     AuthService.emitiLogin.emit(this.decodedToken?.user_name);
   }
 
@@ -88,16 +60,16 @@ export class AuthService {
     AuthService.emitiLogout.emit(this.decodedToken?.user_name);
   }
 
-  isTokenInvalid() {
+  haveRole(permissao: string) {
+    return this.decodedToken && this.decodedToken.authorities.includes(permissao);
+  }
+
+  isAccessTokenInvalid() {
     const token = localStorage.getItem('token');
     return !token || this.jwtHelper.isTokenExpired(token);
   }
 
-  haveRole(role: string) {
-    return this.decodedToken && this.decodedToken.authorities.includes(role);
-  }
-
-  hasAnyRoles(roles: any) {
+  haveAnyRole(roles: any) {
     for (const role of roles) {
       if (this.haveRole(role)) {
         return true;
@@ -106,4 +78,6 @@ export class AuthService {
 
     return false;
   }
+
+
 }

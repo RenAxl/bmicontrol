@@ -5,7 +5,7 @@ a:hover {
 }
 
 .col-actions-header {
-width: 115px;
+  width: 115px;
 }
 
 .col-actions {
@@ -17,10 +17,16 @@ width: 115px;
   margin-right: 5px;
 }
 
-@media (min-width: 40em) {
-  .col-actions {
-    width: 120px;
-    text-align: center !important;
-  }
+.columns {
+  flex-direction: column;
+}
 
+.p-column-title {
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .columns {
+    justify-content: none;
+  }
 }

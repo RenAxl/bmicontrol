@@ -3,14 +3,8 @@ import { HttpClient, HttpParams, } from '@angular/common/http';
 
 import { AppConstants } from '../app-constants';
 import { Observable } from 'rxjs';
-import { Member } from '../entities/Member';
-
-export class MemberPagination {
-  page = 0;
-  linesPerPage = 4;
-  direction?: string = "ASC";
-  orderBy?: string = "name";
-}
+import { Member } from '../core/models/Member';
+import { Pagination } from '../core/models/Pagination';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +12,7 @@ export class MemberPagination {
 export class MemberService {
   constructor(private http: HttpClient) {}
 
-  list(pagination: MemberPagination, filterName: string): Observable<any> {
+  list(pagination: Pagination, filterName: string): Observable<any> {
 
     let params = new HttpParams()
     .set('name', filterName)

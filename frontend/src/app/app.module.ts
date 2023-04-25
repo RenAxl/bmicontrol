@@ -3,10 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
-import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './auth/auth.module';
 
 export function tokenGetter(): string {
   return localStorage.getItem('token')!;
@@ -19,16 +20,11 @@ export function tokenGetter(): string {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    
     HttpClientModule,
+    
+    AuthModule,
     CoreModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter,
-        allowedDomains: ['localhost:8080'],
-        disallowedRoutes: ['http://localhost:8080/oauth/token'],
-      },
-    }),
+    SharedModule,
     AppRoutingModule,
   ],
   providers: [],

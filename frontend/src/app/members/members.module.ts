@@ -1,9 +1,7 @@
-import { TrainersModule } from './../admin/trainers/trainers.module';
 import { MemberService } from './member.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
@@ -16,7 +14,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MembersRoutingModule } from './members-routing.module';
 import { MemberListComponent } from './member-list/member-list.component';
 import { MemberFormComponent } from './member-form/member-form.component';
-import { ComponentsModule } from '../components/components.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -34,7 +32,7 @@ import { ComponentsModule } from '../components/components.module';
     TableModule,
     TabViewModule,
     TooltipModule,
-    ComponentsModule,
+    SharedModule,
     DropdownModule,
     MembersRoutingModule,
   ],

@@ -4,8 +4,8 @@ import {  Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
 import { TrainerService } from './../trainer.service';
-import { Trainer } from 'src/app/entities/Trainer';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { Trainer } from 'src/app/core/models/Trainer';
 
 @Component({
   selector: 'app-trainer-form',
@@ -46,6 +46,7 @@ export class TrainerFormComponent implements OnInit {
   }
 
 insert(){
+  console.log(this.trainer);
   this.trainerService.insert(this.trainer).subscribe(() => {
     this.router.navigate(['/admin/trainers/list']);
     this.messageService.add({ severity: 'success', detail: 'Instrutor cadastrado com sucesso!' });

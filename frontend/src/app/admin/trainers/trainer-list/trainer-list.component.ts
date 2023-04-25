@@ -3,9 +3,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
 import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 
-import { TrainerPagination, TrainerService } from '../trainer.service';
-import { Trainer } from 'src/app/entities/Trainer';
+import { TrainerService } from '../trainer.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { Trainer } from 'src/app/core/models/Trainer';
+import { Pagination } from 'src/app/core/models/Pagination';
 
 @Component({
   selector: 'app-trainer-list',
@@ -15,7 +16,7 @@ import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 export class TrainerListComponent implements OnInit {
   trainers: Trainer[] = [];
 
-  pagination = new TrainerPagination();
+  pagination: Pagination = new Pagination();
 
   totalElements: number = 0;
 
@@ -28,7 +29,9 @@ export class TrainerListComponent implements OnInit {
     private messageService: MessageService,
     private errorHandler: ErrorHandlerService,
     private confirmationService: ConfirmationService,
-    ) {}
+    ) {
+      this.pagination.linesPerPage = 3;
+    }
 
   ngOnInit(): void {}
 

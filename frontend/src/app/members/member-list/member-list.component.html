@@ -31,6 +31,7 @@
             <tr>
               <th>Aluno</th>
               <th>Instrutor</th>
+              <th>Idade</th>
               <th>Altura</th>
               <th>Peso</th>
               <th>IMC</th>
@@ -40,33 +41,38 @@
           </ng-template>
           <ng-template pTemplate="body" let-member>
             <tr>
-              <td>
+              <td class="columns">
                 <!--a classe "p-column-title" é do PrimeNG-->
                 <span class="p-column-title">Aluno:</span>
                 {{ member.name }}
               </td>
 
-              <td>
+              <td class="columns">
                 <span class="p-column-title">Instrutor:</span>
                 {{ member.trainer.name }}
               </td>
 
-              <td>
+              <td class="columns">
+                <span class="p-column-title">Idade:</span>
+                {{ member.age }}
+              </td>
+
+              <td class="columns">
                 <span class="p-column-title">Altura:</span>
                 {{ member.height | number : "1.2-2" }}
               </td>
 
-              <td>
+              <td class="columns">
                 <span class="p-column-title">Peso:</span>
                 {{ member.weight | number : "1.2-2" }}
               </td>
 
-              <td>
+              <td class="columns">
                 <span class="p-column-title">IMC:</span>
                 {{ member.bmi | number : "1.2-2" }}
               </td>
 
-              <td>
+              <td class="columns">
                 <span class="p-column-title">Classificação:</span>
                 <div *ngIf="member.rank === 'MAGREZA'">
                   <span [style.color]="'DarkTurquoise'">{{ member.rank }}</span>

@@ -14,30 +14,37 @@ public class MemberDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	
-	@Size(min = 5, max = 60, message ="O nome deve ter entre 5 a 60 caracteres")
+
+	@Size(min = 5, max = 60, message = "O nome deve ter entre 5 a 60 caracteres")
 	@NotBlank(message = "Campo requerido")
 	private String name;
-	
+
+	@Positive(message = "A altura deve ser um valor positivo")
+	@NotNull
+	private Integer age;
+
 	@Positive(message = "A altura deve ser um valor positivo")
 	@NotNull
 	private Double height;
-	
+
 	@Positive(message = "O peso deve ser um valor positivo")
 	@NotNull
 	private Double weight;
-	
+
 	private Double bmi;
 	private String rank;
-	
-	private Trainer trainer;
+
+	private Trainer trainer; // IMPORTANTE: AQUI EU DEVERIA TER COLOCADO TrainerDTO para evitar o loop mas
+								// não fiz isto nos commits.
 
 	public MemberDTO() {
 	}
 
-	public MemberDTO(Long id, String name, Double height, Double weight, Double bmi, String rank, Trainer trainer) {
+	public MemberDTO(Long id, String name, Integer age, Double height, Double weight, Double bmi, String rank,
+			Trainer trainer) {
 		this.id = id;
 		this.name = name;
+		this.age = age;
 		this.height = height;
 		this.weight = weight;
 		this.bmi = bmi;
@@ -48,6 +55,7 @@ public class MemberDTO implements Serializable {
 	public MemberDTO(Member entity) {
 		this.id = entity.getId();
 		this.name = entity.getName();
+		this.age = entity.getAge();
 		this.height = entity.getHeight();
 		this.weight = entity.getWeight();
 		this.bmi = entity.getBmi();
@@ -69,6 +77,14 @@ public class MemberDTO implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
 	}
 
 	public Double getHeight() {

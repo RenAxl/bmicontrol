@@ -75,6 +75,7 @@ public class MemberService {
 
 	private void copyDtoToEntity(MemberDTO memberDto, Member entity) {
 		entity.setName(memberDto.getName());
+		entity.setAge(memberDto.getAge());
 		entity.setTrainer(memberDto.getTrainer());
 		entity.setHeight(memberDto.getHeight());
 		entity.setWeight(memberDto.getWeight());

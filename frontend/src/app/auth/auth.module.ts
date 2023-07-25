@@ -28,8 +28,8 @@ export function tokenGetter(): string {
     JwtModule.forRoot({
       config: {
         tokenGetter,
-        allowedDomains: ['localhost:8080'],
-        disallowedRoutes: ['http://localhost:8080/oauth/token']
+        allowedDomains: ['ec2-18-231-87-192.sa-east-1.compute.amazonaws.com'],
+        disallowedRoutes: ['ec2-18-231-87-192.sa-east-1.compute.amazonaws.com/oauth/token']
       }
     }),
   ],

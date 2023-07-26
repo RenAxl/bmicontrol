@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { AppConstants } from 'src/app/app-constants';
 import { User } from 'src/app/core/models/User';
 import { Pagination } from 'src/app/core/models/Pagination';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -25,25 +25,25 @@ export class UserService {
     .set('orderBy', String(pagination.orderBy));
 
     return this.http
-      .get<any>(AppConstants.backendServer + 'users', { params });
+      .get<any>(environment.baseUrl + '/users', { params });
   }
 
   insert(user: User) : Observable<any> {
    console.log(user);
-    return this.http.post<any>(AppConstants.backendServer + 'users', user);
+    return this.http.post<any>(environment.baseUrl + '/users', user);
   }
 
   findById(id: any): Observable<any> {
-    return this.http.get<any>(AppConstants.backendServer + 'users/' + id);
+    return this.http.get<any>(environment.baseUrl + '/users/' + id);
   }
   
   update(user: User) : Observable<any> {
     console.log(user);
-    return this.http.put<any>(AppConstants.backendServer + 'users/' + user.id, user);
+    return this.http.put<any>(environment.baseUrl + '/users/' + user.id, user);
   }
 
   delete(id: Number): Observable<any> {
-    return this.http.delete(AppConstants.backendServer + 'users/' + id);
+    return this.http.delete(environment.baseUrl + '/users/' + id);
   }
 
 }

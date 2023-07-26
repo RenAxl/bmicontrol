@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { User } from '../core/models/User';
-import { AppConstants } from '../app-constants';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +29,7 @@ export class AuthService {
 
     const body = `username=${user.email}&password=${user.password}&grant_type=password`;
 
-    return this.http.post<any>(AppConstants.oauthTokenUrl, body, { headers });
+    return this.http.post<any>(environment.oauthTokenUrl, body, { headers });
 
   }
 

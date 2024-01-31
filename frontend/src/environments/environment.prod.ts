@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://ec2-18-231-87-192.sa-east-1.compute.amazonaws.com',
-  oauthTokenUrl: 'http://ec2-18-231-87-192.sa-east-1.compute.amazonaws.com/oauth/token',
-  tokenAllowedDomains: 'ec2-18-231-87-192.sa-east-1.compute.amazonaws.com',
-  tokenDisallowedRoutes: 'http://ec2-18-231-87-192.sa-east-1.compute.amazonaws.com/oauth/token'
+  baseUrl: 'https://bmicontrol-468030b6f5ff.herokuapp.com',
+  oauthTokenUrl: 'https://bmicontrol-468030b6f5ff.herokuapp.com/oauth/token',
+  tokenAllowedDomains: 'https://bmicontrol-468030b6f5ff.herokuapp.com',
+  tokenDisallowedRoutes: 'https://bmicontrol-468030b6f5ff.herokuapp.com/oauth/token'
 };

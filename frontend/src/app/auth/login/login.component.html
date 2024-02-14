@@ -1,8 +1,8 @@
 <div class="login-card">
   <h1>LOGIN</h1>
   <p>Entre com algum dos usuários: <br>
-    rose@email.com / Senha 123456 / Usuário Admin
-    axl@email.com / Senha 123456 /Usuário Funcionario
+    - Admin / E-mail: rose@email.com / Senha: 123456 <br>
+    - Functionary / E-mail: axl@email.com / Senha: 123456 
   </p>
 
   <form #loginForm="ngForm" (ngSubmit)="save()">
@@ -12,7 +12,7 @@
         pInputText
         type="email"
         class="form-control"
-        placeholder="Email"
+        placeholder="E-mail"
         name="email"
         [(ngModel)]="user.email"
         #email="ngModel"

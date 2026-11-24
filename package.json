@@ -4,7 +4,7 @@
   "private": true,
   "engines": { "node": "22.x" },
   "scripts": {
-    "heroku-postbuild": "npm ci --prefix frontend --include=dev && npm run build --prefix frontend -- --configuration production",
+    "heroku-postbuild": "npm ci --prefix frontend --include=dev && node frontend/build.cjs",
     "start": "node frontend/server.cjs"
   }
 }

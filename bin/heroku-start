@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+case "${APP_COMPONENT:-backend}" in
+  backend) exec java ${JAVA_OPTS:-} -Dserver.port="${PORT:-8080}" -jar backend/target/bmicontrol-0.0.1-SNAPSHOT.jar ;;
+  frontend) exec node frontend/server.cjs ;;
+  *) echo "APP_COMPONENT must be backend or frontend" >&2; exit 1 ;;
+esac

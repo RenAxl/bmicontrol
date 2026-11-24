@@ -1,0 +1,10 @@
+{
+  "name": "bmicontrol-deployment",
+  "version": "1.0.0",
+  "private": true,
+  "engines": { "node": "22.x" },
+  "scripts": {
+    "heroku-postbuild": "npm ci --prefix frontend --include=dev && npm run build --prefix frontend -- --configuration production",
+    "start": "node frontend/server.cjs"
+  }
+}
